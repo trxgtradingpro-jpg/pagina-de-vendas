@@ -17,7 +17,9 @@
       --text:#eef6ff;
       --muted:rgba(238,246,255,.68);
       --muted2:rgba(238,246,255,.55);
+
       --stroke:rgba(255,255,255,.10);
+      --stroke2:rgba(255,255,255,.14);
       --shadow: 0 26px 90px rgba(0,0,0,.60);
       --radius:22px;
 
@@ -30,6 +32,7 @@
       --yellow:#ffd21a;
       --silver:#cfd6df;
       --purple:#a855f7;
+      --blue:#4aa3ff;
 
       --grid: rgba(255,255,255,.09);
     }
@@ -48,6 +51,7 @@
       overflow-x:hidden;
     }
 
+    /* Fundo grid + vinheta */
     .grid-bg{
       position:fixed; inset:0;
       pointer-events:none;
@@ -65,10 +69,66 @@
     }
 
     .container{width:min(1120px, 92vw); margin:0 auto;}
-    .center{display:flex; align-items:center; justify-content:center;}
+    .sp{height:18px}
 
+    /* Barra superior com logo2 */
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter: blur(14px);
+      background: rgba(5,7,10,.55);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .topbar .inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding: 10px 0;
+      gap: 12px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      min-width: 170px;
+    }
+    .brand img{
+      height: 26px;
+      width:auto;
+      display:block;
+      filter: drop-shadow(0 10px 20px rgba(0,0,0,.45));
+      opacity:.98;
+    }
+    .mini-pill{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(25,227,154,.28);
+      background: rgba(25,227,154,.08);
+      color: rgba(25,227,154,1);
+      font-weight: 900;
+      font-size: 13px;
+      box-shadow: 0 18px 55px rgba(25,227,154,.08);
+      white-space:nowrap;
+    }
+    .mini-pill .dot{
+      width:9px;height:9px;border-radius:999px;background:rgba(25,227,154,1);
+      box-shadow: 0 0 16px rgba(25,227,154,.55);
+    }
+    .topbar-actions{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    /* Pílula topo (timer) */
     .top-pill{
-      margin: 18px auto 10px;
+      margin: 14px auto 10px;
       width: fit-content;
       padding: 10px 16px;
       border-radius: 999px;
@@ -89,11 +149,57 @@
       box-shadow: 0 0 18px rgba(255,58,58,.55);
     }
 
-    header.hero{
-      padding: 12px 0 12px;
-      text-align:center;
+    /* Botões */
+    .btn{
+      appearance:none;
+      border:0;
+      cursor:pointer;
+      font-weight: 1000;
+      letter-spacing:.2px;
+      border-radius: 14px;
+      padding: 12px 16px;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      transition: .18s transform, .18s filter, .18s box-shadow;
+      user-select:none;
+      position:relative;
+      isolation:isolate;
+      text-decoration:none;
+      white-space:nowrap;
+    }
+    .btn:hover{transform: translateY(-1px); filter: brightness(1.06);}
+    .btn:active{transform: translateY(0px) scale(.99);}
+    .btn.green{
+      background: linear-gradient(180deg, rgba(25,227,154,1), rgba(11,191,127,1));
+      color:#03100b;
+      box-shadow: 0 18px 46px rgba(25,227,154,.18);
+    }
+    .btn.green:before{
+      content:"";
+      position:absolute; inset:0;
+      border-radius: inherit;
+      background: radial-gradient(320px 90px at 30% 10%, rgba(255,255,255,.35), transparent 60%);
+      opacity:.55;
+      z-index:-1;
+      pointer-events:none;
+    }
+    .btn.white{
+      background:#fff;
+      color:#000;
+      box-shadow: 0 16px 50px rgba(0,0,0,.25);
+    }
+    .btn.ghost{
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.10);
+      color: rgba(255,255,255,.90);
     }
 
+    /* HERO */
+    header.hero{
+      padding: 10px 0 18px;
+      text-align:center;
+    }
     .logo-wrap{
       margin-top: 6px;
       display:flex;
@@ -101,7 +207,6 @@
       align-items:center;
       gap:14px;
     }
-
     .logo-box{
       width:min(460px, 88vw);
       aspect-ratio: 16/10;
@@ -165,62 +270,255 @@
       font-weight: 800;
     }
     .sub b{color: var(--green)}
+    .cta{margin-top:18px; display:flex; justify-content:center; gap: 10px; flex-wrap:wrap;}
 
-    .btn{
-      appearance:none;
-      border:0;
-      cursor:pointer;
-      font-weight: 1000;
-      letter-spacing:.2px;
-      border-radius: 14px;
-      padding: 16px 22px;
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      transition: .18s transform, .18s filter, .18s box-shadow;
-      user-select:none;
+    /* Chart */
+    .chart{
+      margin: 18px auto 0;
+      width:min(980px, 96vw);
+      border-radius: 18px;
+      border: 2px solid rgba(25,227,154,.32);
+      background: rgba(8,14,12,.55);
+      box-shadow: 0 20px 95px rgba(0,0,0,.55);
+      overflow:hidden;
       position:relative;
-      isolation:isolate;
     }
-    .btn:hover{transform: translateY(-1px); filter: brightness(1.06);}
-    .btn:active{transform: translateY(0px) scale(.99);}
-
-    .btn.green{
-      background: linear-gradient(180deg, rgba(25,227,154,1), rgba(11,191,127,1));
-      color:#03100b;
-      box-shadow: 0 18px 46px rgba(25,227,154,.18);
-    }
-    .btn.green:before{
+    .chart:before{
       content:"";
-      position:absolute; inset:0;
-      border-radius: inherit;
-      background: radial-gradient(320px 90px at 30% 10%, rgba(255,255,255,.35), transparent 60%);
-      opacity:.55;
-      z-index:-1;
+      position:absolute; inset:-2px;
+      background: radial-gradient(700px 250px at 50% 0%, rgba(25,227,154,.12), transparent 60%);
       pointer-events:none;
     }
-
-    .cta{margin-top:18px; display:flex; justify-content:center;}
-
-    /* ======= PLANOS (IGUAL AO PRINT) ======= */
-    section.plans{
-      padding: 34px 0 70px;
+    .chart-head{
+      padding: 12px 14px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight: 1000;
+      color: rgba(255,255,255,.95);
+      gap:10px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      position:relative;
+      z-index:1;
     }
+    .chart img{width:100%; display:block; position:relative; z-index:1;}
 
-    .plans-title{
+    .metrics{
+      display:grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 10px;
+      padding: 12px;
+      background: rgba(8,14,12,.65);
+      border-top: 1px solid rgba(255,255,255,.06);
+      position:relative;
+      z-index:1;
+    }
+    @media (max-width: 700px){ .metrics{grid-template-columns:1fr} }
+    .metric{
       text-align:center;
+      padding: 12px 12px;
+      border-radius: 14px;
+      background: rgba(0,0,0,.22);
+      border: 1px solid rgba(255,255,255,.08);
+      box-shadow: 0 18px 60px rgba(0,0,0,.25);
+    }
+    .metric .v{
+      font-weight: 1000;
+      font-size: 24px;
+      letter-spacing:-.2px;
+    }
+    .metric .l{
+      margin-top: 2px;
+      font-size: 12px;
+      color: var(--muted2);
+      font-weight: 800;
+      letter-spacing:.2px;
+    }
+    .metric .v.green{color: var(--green)}
+    .metric .v.yellow{color: var(--yellow)}
+    .metric .v.blue{color: #67b0ff}
+
+    /* Features */
+    .row4{
+      margin: 26px auto 0;
+      width:min(980px, 96vw);
+      display:grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 14px;
+    }
+    @media (max-width: 980px){ .row4{grid-template-columns:1fr 1fr} }
+    @media (max-width: 560px){ .row4{grid-template-columns:1fr} }
+
+    .feat{
+      padding: 16px 16px;
+      border-radius: 16px;
+      background: rgba(0,0,0,.22);
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: 0 18px 60px rgba(0,0,0,.30);
+      position:relative;
+      overflow:hidden;
+      text-align:center;
+    }
+    .feat:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(360px 120px at 10% 0%, rgba(25,227,154,.12), transparent 60%);
+      opacity:.9;
+      pointer-events:none;
+    }
+    .feat strong{font-weight:1000; display:block; position:relative}
+    .feat span{color: var(--muted2); font-weight:800; font-size: 13px; display:block; margin-top:6px; position:relative}
+
+    /* Bonus */
+    section.bonus{
+      padding: 44px 0 10px;
+    }
+    .pill{
+      width: fit-content;
+      margin:0 auto 12px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-weight: 1000;
+      letter-spacing:.2px;
+    }
+    .bonus .pill{
+      border: 2px solid rgba(255,138,31,.42);
+      background: rgba(255,138,31,.08);
+      color: rgba(255,180,120,1);
+    }
+    .title{
+      text-align:center;
+      margin: 0 auto;
+      width:min(980px, 96vw);
       font-weight: 1000;
       letter-spacing:-.8px;
       line-height:1.06;
       font-size: clamp(28px, 3.8vw, 56px);
-      margin: 0 auto 18px;
-      width:min(980px, 96vw);
     }
-    .plans-title .green{color: rgba(25,227,154,.85);}
+    .title .accent-orange{color: var(--orange);}
+    .title .accent-green{color: rgba(25,227,154,.85);}
+    .subtitle{
+      text-align:center;
+      margin: 10px auto 0;
+      width:min(760px, 92vw);
+      color: var(--muted2);
+      font-weight: 800;
+    }
 
+    .bonus-grid{
+      margin: 24px auto 0;
+      width:min(980px, 96vw);
+      display:grid;
+      grid-template-columns: 1fr 1.25fr;
+      gap: 14px;
+      align-items:stretch;
+    }
+    @media (max-width: 900px){ .bonus-grid{grid-template-columns:1fr} }
+
+    .panel{
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.22);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .panel:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(700px 220px at 40% 0%, rgba(255,138,31,.12), transparent 60%);
+      pointer-events:none;
+    }
+
+    .elliot{
+      min-height: 280px;
+      display:grid;
+      place-items:center;
+      padding: 18px;
+      border: 2px solid rgba(255,138,31,.22);
+      background: rgba(255,138,31,.06);
+    }
+    .elliot .box{
+      width: 100%;
+      max-width: 360px;
+      aspect-ratio: 1/1;
+      border-radius: 18px;
+      background: rgba(0,0,0,.34);
+      border: 1px solid rgba(255,255,255,.09);
+      display:grid;
+      place-items:center;
+      overflow:hidden;
+      box-shadow: 0 18px 60px rgba(0,0,0,.35);
+      position:relative;
+    }
+    .elliot .box:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(380px 180px at 50% 20%, rgba(255,138,31,.16), transparent 60%);
+      pointer-events:none;
+    }
+    .elliot img{max-width: 80%; height:auto; display:block; position:relative; z-index:1;}
+
+    .bonus-list{display:grid; gap: 12px; padding: 18px;}
+    .bitem{
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.18);
+      display:flex;
+      gap: 14px;
+      align-items:flex-start;
+      box-shadow: 0 18px 55px rgba(0,0,0,.25);
+      position:relative;
+      overflow:hidden;
+    }
+    .bitem:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(460px 140px at 10% 0%, rgba(25,227,154,.10), transparent 62%);
+      opacity:.8;
+      pointer-events:none;
+    }
+    .bicon{
+      width: 40px; height:40px;
+      border-radius: 12px;
+      display:grid; place-items:center;
+      background: rgba(25,227,154,.12);
+      border: 1px solid rgba(25,227,154,.22);
+      flex: 0 0 auto;
+      margin-top:2px;
+      font-weight:1000;
+      color: rgba(25,227,154,1);
+      box-shadow: 0 12px 30px rgba(25,227,154,.10);
+      position:relative;
+      z-index:1;
+    }
+    .btext{position:relative; z-index:1;}
+    .bitem h4{margin:0; font-weight:1000; letter-spacing:-.2px}
+    .bitem p{margin:6px 0 0; color: var(--muted2); font-weight:800; font-size: 13px; line-height:1.4;}
+
+    .important{
+      margin: 16px auto 0;
+      width:min(980px, 96vw);
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.10);
+      color: rgba(255,255,255,.72);
+      font-weight:800;
+      font-size: 13px;
+      text-align:center;
+      box-shadow: 0 18px 60px rgba(0,0,0,.25);
+    }
+    .important b{color:#fff;}
+
+    /* ======= PLANOS (IGUAL AO PRINT) ======= */
+    section.plans{
+      padding: 30px 0 70px;
+    }
     .plan-grid{
       width:min(1100px, 96vw);
-      margin: 0 auto;
+      margin: 18px auto 0;
       display:grid;
       grid-template-columns: repeat(5, 1fr);
       gap: 16px;
@@ -237,13 +535,11 @@
       border: 1px solid rgba(255,255,255,.10);
       box-shadow: 0 22px 70px rgba(0,0,0,.45);
       overflow:hidden;
-      transform: translateZ(0);
       transition: .18s transform, .18s filter;
-      min-height: 280px;
+      min-height: 290px;
     }
     .plan-card:hover{ transform: translateY(-2px); filter: brightness(1.02); }
 
-    /* brilho */
     .plan-card:before{
       content:"";
       position:absolute; inset:-2px;
@@ -251,8 +547,6 @@
       pointer-events:none;
       opacity:.9;
     }
-
-    /* “borda glow” colorida */
     .plan-card:after{
       content:"";
       position:absolute;
@@ -284,6 +578,7 @@
       background: linear-gradient(90deg, rgba(255,58,58,.95), rgba(255,138,31,.95));
       color:#120000;
       border-bottom: 1px solid rgba(255,255,255,.10);
+      z-index:2;
     }
 
     .plan-body{
@@ -296,7 +591,7 @@
     }
 
     .icon{
-      width: 52px; height: 52px;
+      width: 54px; height: 54px;
       border-radius: 16px;
       display:grid;
       place-items:center;
@@ -304,7 +599,7 @@
       border: 1px solid rgba(255,255,255,.08);
       margin-top: 8px;
     }
-    .icon svg{ width: 34px; height: 34px; }
+    .icon svg{ width: 36px; height: 36px; }
 
     .plan-name{
       margin-top: 14px;
@@ -343,7 +638,6 @@
       opacity:.70;
       font-weight: 800;
     }
-
     .plan-price.only{
       margin-top: 18px;
       font-weight: 1000;
@@ -376,7 +670,7 @@
       filter: drop-shadow(0 8px 18px rgba(0,0,0,.35));
     }
 
-    /* Temas (cores iguais ao print) */
+    /* Temas */
     .free{
       --border: linear-gradient(90deg, rgba(25,227,154,.70), rgba(25,227,154,.10));
       --glow: rgba(25,227,154,.20);
@@ -455,12 +749,46 @@
       color: rgba(255,255,255,.62);
       font-weight:800;
     }
+
+    .disclaimer{
+      margin: 18px auto 70px;
+      width:min(980px, 96vw);
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.10);
+      color: rgba(255,255,255,.70);
+      font-weight: 800;
+      font-size: 12px;
+      text-align:center;
+      box-shadow: 0 18px 55px rgba(0,0,0,.25);
+    }
   </style>
 </head>
 
 <body>
   <div class="grid-bg"></div>
   <div class="vignette"></div>
+
+  <!-- TOPBAR com logo2 + CTA -->
+  <div class="topbar">
+    <div class="container">
+      <div class="inner">
+        <div class="brand">
+          <img src="assets/logo2.png" alt="TRX PRO" onerror="this.style.opacity=.45; this.alt='Coloque assets/logo2.png';">
+        </div>
+
+        <div class="topbar-actions">
+          <div class="mini-pill">
+            <span class="dot"></span>
+            <span id="miniRobots">375 robôs operando</span>
+          </div>
+          <a class="btn ghost" href="#bonus">Bônus</a>
+          <a class="btn green" href="#planos">Ativar agora</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="container">
     <div class="top-pill">
@@ -469,11 +797,12 @@
     </div>
   </div>
 
-  <header class="hero">
+  <header class="hero" id="topo">
     <div class="container">
+
       <div class="logo-wrap">
         <div class="logo-box">
-          <img src="logo.jpeg" alt="TRX PRO" onerror="this.style.opacity=.4; this.alt='Coloque logo.jpeg na raiz do projeto';">
+          <img src="assets/logo.jpeg" alt="TRX PRO" onerror="this.style.opacity=.4; this.alt='Coloque assets/logo.jpeg';">
         </div>
 
         <div class="live-pill">
@@ -495,17 +824,128 @@
       </div>
 
       <div class="cta">
-        <button class="btn green" onclick="document.querySelector('#planos').scrollIntoView({behavior:'smooth'})">
-          🚀 ATIVAR ROBÔ AGORA
-        </button>
+        <a class="btn green" href="#planos">🚀 ATIVAR ROBÔ AGORA</a>
+        <a class="btn white" href="#bonus">VER BÔNUS →</a>
       </div>
+
+      <!-- Curva -->
+      <div class="chart">
+        <div class="chart-head">📊 CURVA DE CAPITAL 2025 - RESULTADOS REAIS</div>
+        <img src="assets/curva.png" alt="Curva de capital" onerror="this.style.opacity=.45; this.alt='Coloque assets/curva.png';">
+        <div class="metrics">
+          <div class="metric">
+            <div class="v green">R$ 75.38k</div>
+            <div class="l">Capital Atual</div>
+          </div>
+          <div class="metric">
+            <div class="v yellow">71%</div>
+            <div class="l">Win Rate</div>
+          </div>
+          <div class="metric">
+            <div class="v blue">2.4k+</div>
+            <div class="l">Usuários</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Features -->
+      <div class="row4">
+        <div class="feat">
+          <strong>⚡ Execução em milissegundos</strong>
+          <span>Entrada e saída rápidas</span>
+        </div>
+        <div class="feat">
+          <strong>🛡️ Gestão de risco automática</strong>
+          <span>Stops e controle</span>
+        </div>
+        <div class="feat">
+          <strong>🕒 Opera 24/5 sem parar</strong>
+          <span>Rotina automática</span>
+        </div>
+        <div class="feat">
+          <strong>📈 71% de taxa de acerto</strong>
+          <span>Base em resultados</span>
+        </div>
+      </div>
+
+      <div class="sp"></div>
+
+      <a class="btn white" href="#planos" style="padding:14px 20px; display:inline-flex;">
+        VER PLANOS AGORA →
+      </a>
+
     </div>
   </header>
 
+  <!-- BONUS -->
+  <section class="bonus" id="bonus">
+    <div class="container">
+      <div class="pill">✨ BÔNUS EXCLUSIVO</div>
+
+      <h2 class="title">
+        Ganhe <span class="accent-orange">GRÁTIS</span><br> o Módulo de Automação
+      </h2>
+
+      <div class="subtitle">
+        Abra sua conta na nossa corretora parceira e receba benefícios exclusivos
+      </div>
+
+      <div class="bonus-grid">
+        <div class="panel elliot">
+          <div class="box">
+            <img src="assets/elliot.png" alt="Elliot" onerror="this.style.opacity=.45; this.alt='Coloque assets/elliot.png';">
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="bonus-list">
+            <div class="bitem">
+              <div class="bicon">✓</div>
+              <div class="btext">
+                <h4>Módulo de Automação GRÁTIS</h4>
+                <p>Configure e ative o TRX PRO sem custo adicional ao abrir sua conta</p>
+              </div>
+            </div>
+
+            <div class="bitem">
+              <div class="bicon" style="background: rgba(74,163,255,.12); border-color: rgba(74,163,255,.22); color: rgba(74,163,255,1);">✓</div>
+              <div class="btext">
+                <h4>Suporte Humanizado</h4>
+                <p>Atendimento personalizado quando você precisar, sem robôs ou espera</p>
+              </div>
+            </div>
+
+            <div class="bitem">
+              <div class="bicon" style="background: rgba(168,85,247,.12); border-color: rgba(168,85,247,.22); color: rgba(168,85,247,1);">✓</div>
+              <div class="btext">
+                <h4>Assessor de Investimentos</h4>
+                <p>Acesso direto a profissionais para orientar suas estratégias</p>
+              </div>
+            </div>
+
+            <div class="bitem">
+              <div class="bicon" style="background: rgba(255,138,31,.12); border-color: rgba(255,138,31,.22); color: rgba(255,170,100,1);">✓</div>
+              <div class="btext">
+                <h4>Profit Pro GRÁTIS</h4>
+                <p>Plataforma profissional de análise e execução sem mensalidade</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="important">
+        <b>Importante:</b> Não é obrigatório usar nossa corretora parceira. Você pode operar o TRX PRO em qualquer corretora de sua preferência.
+        Os benefícios acima são exclusivos para quem optar pela parceria.
+      </div>
+    </div>
+  </section>
+
+  <!-- PLANOS -->
   <section class="plans" id="planos">
     <div class="container">
-      <h2 class="plans-title">
-        Escolha Seu <span class="green">PODER DE FOGO</span>
+      <h2 class="title">
+        Escolha Seu <span class="accent-green">PODER DE FOGO</span>
       </h2>
 
       <div class="plan-grid">
@@ -515,7 +955,6 @@
           <div class="plan-badge">⚡ TESTE GRÁTIS - TEMPO LIMITADO ⚡</div>
           <div class="plan-body">
             <div class="icon" aria-hidden="true">
-              <!-- relógio -->
               <svg viewBox="0 0 24 24" fill="none">
                 <path d="M12 8v5l3 2" stroke="#ffd21a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" stroke="#ffd21a" stroke-width="2"/>
@@ -538,7 +977,6 @@
         <article class="plan-card bronze">
           <div class="plan-body">
             <div class="icon" aria-hidden="true">
-              <!-- brilho -->
               <svg viewBox="0 0 24 24" fill="none">
                 <path d="M12 2l1.5 5.2L18 9l-4.5 1.8L12 16l-1.5-5.2L6 9l4.5-1.8L12 2Z"
                       stroke="#ff8a1f" stroke-width="2" stroke-linejoin="round"/>
@@ -564,7 +1002,6 @@
         <article class="plan-card prata">
           <div class="plan-body">
             <div class="icon" aria-hidden="true">
-              <!-- check -->
               <svg viewBox="0 0 24 24" fill="none">
                 <path d="M20 6 9 17l-5-5" stroke="#cfd6df" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" stroke="#cfd6df" stroke-width="2"/>
@@ -590,7 +1027,6 @@
         <article class="plan-card gold">
           <div class="plan-body">
             <div class="icon" aria-hidden="true">
-              <!-- coroa -->
               <svg viewBox="0 0 24 24" fill="none">
                 <path d="M4 7l4 4 4-6 4 6 4-4v12H4V7Z" stroke="#ffd21a" stroke-width="2" stroke-linejoin="round"/>
                 <path d="M4 19h16" stroke="#ffd21a" stroke-width="2" stroke-linecap="round"/>
@@ -616,7 +1052,6 @@
         <article class="plan-card black">
           <div class="plan-body">
             <div class="icon" aria-hidden="true">
-              <!-- foguete -->
               <svg viewBox="0 0 24 24" fill="none">
                 <path d="M14 4c3 1 6 4 6 7-3 0-6-3-7-6l1-1Z" stroke="#d8b4fe" stroke-width="2" stroke-linejoin="round"/>
                 <path d="M5 19c1-4 4-7 8-8l6-2-2 6c-1 4-4 7-8 8l-4 1 1-5Z" stroke="#d8b4fe" stroke-width="2" stroke-linejoin="round"/>
@@ -644,11 +1079,16 @@
         ⚠️ Preço sobe em <span id="priceCountdown">13min 13s</span>
         <small>Não deixe para depois. Outro(a) já está lendo isso AGORA.</small>
       </div>
+
+      <div class="disclaimer">
+        ⚠️ AVISO IMPORTANTE: Trading envolve riscos. Resultados passados não garantem resultados futuros.
+        Esta página não oferece aconselhamento financeiro.
+      </div>
     </div>
   </section>
 
   <script>
-    // LINKS (já com os seus)
+    // LINKS (seus links oficiais)
     const CHECKOUT = {
       gratis: "https://webhook-infinitypay.onrender.com/checkout/trx-gratis",
       bronze: "https://webhook-infinitypay.onrender.com/checkout/trx-bronze",
@@ -662,7 +1102,7 @@
       window.location.href = url;
     }
 
-    // Contagem regressiva (ajuste se quiser)
+    // Contagem regressiva
     let seconds = 14 * 60 + 4; // 14:04
     const topEl = document.getElementById("topCountdown");
     const barEl = document.getElementById("priceCountdown");
@@ -676,17 +1116,20 @@
     setInterval(() => {
       seconds = Math.max(0, seconds - 1);
       const f = fmt(seconds);
-      topEl.textContent = `${f.txt} para o preço subir`;
-      barEl.textContent = `${f.m}min ${String(f.ss).padStart(2,'0')}s`;
+      if (topEl) topEl.textContent = `${f.txt} para o preço subir`;
+      if (barEl) barEl.textContent = `${f.m}min ${String(f.ss).padStart(2,'0')}s`;
     }, 1000);
 
     // "Robôs operando agora"
     const liveEl = document.getElementById("liveRobots");
+    const miniEl = document.getElementById("miniRobots");
     let base = 375;
+
     setInterval(() => {
       const delta = Math.floor(Math.random() * 3) - 1;
       base = Math.max(320, Math.min(520, base + delta));
-      liveEl.textContent = `${base} ROBÔS OPERANDO AGORA`;
+      if (liveEl) liveEl.textContent = `${base} ROBÔS OPERANDO AGORA`;
+      if (miniEl) miniEl.textContent = `${base} robôs operando`;
     }, 2500);
   </script>
 </body>
