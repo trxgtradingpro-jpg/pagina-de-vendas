@@ -775,7 +775,16 @@
     <div class="container">
       <div class="inner">
         <div class="brand">
-          <img src="assets/logo2.png" alt="TRX PRO" onerror="this.style.opacity=.45; this.alt='Coloque assets/logo2.png';">
+          <img
+  src="assets/logo2.png"
+  alt="TRX PRO"
+  onerror="
+    if (!this.dataset.fallback1) { this.dataset.fallback1='1'; this.src='./logo2.png'; return; }
+    this.style.display='none';
+    this.parentElement.insertAdjacentHTML('beforeend','<span style=&quot;font-weight:1000;letter-spacing:.6px;color:rgba(255,255,255,.9)&quot;>TRX PRO</span>');
+  "
+>
+
         </div>
 
         <div class="topbar-actions">
@@ -1132,5 +1141,48 @@
       if (miniEl) miniEl.textContent = `${base} robôs operando`;
     }, 2500);
   </script>
+  <!-- Botão flutuante WhatsApp -->
+<a
+  href="https://wa.me/5511940431906?text=Oi!%20Quero%20tirar%20d%C3%BAvidas%20sobre%20o%20TRX%20PRO."
+  class="whatsapp-float"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Falar no WhatsApp"
+  title="Falar no WhatsApp"
+>
+  <!-- Ícone WhatsApp (SVG) -->
+  <svg viewBox="0 0 32 32" aria-hidden="true">
+    <path d="M19.11 17.53c-.28-.14-1.64-.81-1.9-.9-.25-.09-.44-.14-.62.14-.18.28-.71.9-.87 1.09-.16.18-.32.21-.6.07-.28-.14-1.18-.43-2.25-1.38-.83-.74-1.4-1.65-1.56-1.93-.16-.28-.02-.43.12-.57.13-.13.28-.32.43-.48.14-.16.18-.28.28-.46.09-.18.05-.35-.02-.48-.07-.14-.62-1.49-.85-2.04-.23-.55-.46-.48-.62-.49-.16 0-.35-.02-.53-.02-.18 0-.48.07-.73.35-.25.28-.96.94-.96 2.29s.98 2.66 1.11 2.85c.14.18 1.93 2.95 4.68 4.14.65.28 1.16.45 1.56.58.66.21 1.26.18 1.73.11.53-.08 1.64-.67 1.87-1.32.23-.65.23-1.2.16-1.32-.07-.12-.25-.18-.53-.32z"/>
+    <path d="M26.66 5.33C24.02 2.69 20.51 1.24 16.77 1.24 9.12 1.24 2.9 7.47 2.9 15.11c0 2.44.64 4.82 1.86 6.92L2.78 30.76l8.93-1.95c2.03 1.11 4.33 1.7 6.69 1.7h.01c7.65 0 13.87-6.22 13.87-13.87 0-3.74-1.46-7.25-4.1-9.89zm-9.89 22.82h-.01c-2.07 0-4.1-.56-5.88-1.62l-.42-.25-5.3 1.16 1.13-5.16-.27-.44c-1.14-1.81-1.75-3.9-1.75-6.06 0-6.32 5.14-11.46 11.46-11.46 3.06 0 5.94 1.19 8.1 3.36 2.16 2.16 3.35 5.04 3.35 8.1 0 6.32-5.14 11.46-11.46 11.46z"/>
+  </svg>
+</a>
+
+<style>
+  .whatsapp-float{
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    width: 58px;
+    height: 58px;
+    border-radius: 999px;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(180deg, #25D366, #1aa952);
+    box-shadow: 0 18px 60px rgba(0,0,0,.45);
+    border: 1px solid rgba(255,255,255,.14);
+    z-index: 9999;
+    transition: transform .18s ease, filter .18s ease;
+    text-decoration: none;
+  }
+  .whatsapp-float:hover{ transform: translateY(-2px); filter: brightness(1.06); }
+  .whatsapp-float:active{ transform: translateY(0px) scale(.99); }
+  .whatsapp-float svg{
+    width: 30px;
+    height: 30px;
+    fill: #07140d;
+    filter: drop-shadow(0 10px 18px rgba(0,0,0,.25));
+  }
+</style>
+
 </body>
 </html>
