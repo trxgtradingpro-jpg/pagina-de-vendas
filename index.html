@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TRX PRO — Página de Vendas</title>
+  <meta name="description" content="Página de vendas moderna, rápida e otimizada para conversão.">
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --card:#0f1620;
+      --muted:#a8b3c7;
+      --text:#eaf0ff;
+      --brand:#4aa3ff;
+      --brand2:#7c5cff;
+      --ok:#22c55e;
+      --warn:#f59e0b;
+      --danger:#ef4444;
+      --stroke:rgba(255,255,255,.08);
+      --shadow:0 18px 60px rgba(0,0,0,.45);
+      --radius:18px;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      background:
+        radial-gradient(900px 500px at 15% 10%, rgba(74,163,255,.18), transparent 55%),
+        radial-gradient(700px 400px at 80% 20%, rgba(124,92,255,.18), transparent 60%),
+        radial-gradient(900px 700px at 50% 90%, rgba(34,197,94,.10), transparent 60%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.45;
+    }
+    a{color:inherit; text-decoration:none}
+    .container{width:min(1100px, 92vw); margin:0 auto}
+    .topbar{
+      position:sticky; top:0; z-index:20;
+      backdrop-filter: blur(12px);
+      background:rgba(11,15,20,.65);
+      border-bottom:1px solid var(--stroke);
+    }
+    .topbar .inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
+      gap:16px;
+    }
+    .logo{
+      display:flex; align-items:center; gap:10px;
+      font-weight:800; letter-spacing:.4px;
+    }
+    .badge{
+      font-size:12px; padding:6px 10px;
+      border:1px solid var(--stroke);
+      border-radius:999px;
+      color:var(--muted);
+      background:rgba(255,255,255,.03);
+    }
+    .nav{
+      display:flex; gap:14px; flex-wrap:wrap;
+      color:var(--muted); font-size:14px;
+    }
+    .nav a{opacity:.9}
+    .nav a:hover{opacity:1; color:#fff}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      padding:12px 16px;
+      border-radius:12px;
+      border:1px solid var(--stroke);
+      background:rgba(255,255,255,.03);
+      color:#fff;
+      cursor:pointer;
+      transition:.2s transform, .2s opacity, .2s background;
+      font-weight:700;
+    }
+    .btn:hover{transform: translateY(-1px); background:rgba(255,255,255,.06)}
+    .btn.primary{
+      background:linear-gradient(135deg, var(--brand), var(--brand2));
+      border-color:transparent;
+      box-shadow: 0 18px 40px rgba(74,163,255,.16);
+    }
+    .btn.primary:hover{opacity:.95}
+    .hero{
+      padding:54px 0 22px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:26px;
+      align-items:stretch;
+    }
+    @media (max-width: 920px){
+      .hero-grid{grid-template-columns:1fr}
+    }
+
+    .h-title{
+      font-size: clamp(28px, 4vw, 48px);
+      line-height:1.05;
+      margin:0 0 12px;
+      letter-spacing:-.6px;
+    }
+    .h-sub{
+      color:var(--muted);
+      font-size: clamp(14px, 1.6vw, 18px);
+      margin:0 0 18px;
+      max-width: 55ch;
+    }
+    .chips{
+      display:flex; gap:10px; flex-wrap:wrap;
+      margin: 10px 0 18px;
+    }
+    .chip{
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background:rgba(255,255,255,.03);
+      color:var(--muted);
+      font-size:13px;
+    }
+    .chip b{color:#fff}
+    .hero-cta{
+      display:flex; gap:12px; flex-wrap:wrap;
+      margin-top:14px;
+    }
+
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid var(--stroke);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .proof{
+      padding:18px;
+      height:100%;
+    }
+    .mini{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:12px;
+      margin-top:14px;
+    }
+    @media (max-width: 520px){
+      .mini{grid-template-columns:1fr}
+    }
+    .metric{
+      border:1px solid var(--stroke);
+      background:rgba(255,255,255,.03);
+      border-radius:14px;
+      padding:12px;
+    }
+    .metric .big{font-size:22px; font-weight:900}
+    .metric .small{color:var(--muted); font-size:12px}
+    .note{
+      margin-top:12px;
+      font-size:12.5px;
+      color:var(--muted);
+      opacity:.95;
+    }
+
+    section{padding:26px 0}
+    .section-title{
+      font-size:24px;
+      margin:0 0 10px;
+      letter-spacing:-.2px;
+    }
+    .section-sub{color:var(--muted); margin:0 0 16px}
+
+    .grid-3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+    }
+    @media (max-width: 900px){
+      .grid-3{grid-template-columns:1fr}
+    }
+    .item{
+      padding:16px;
+    }
+    .item h3{margin:6px 0 6px; font-size:16px}
+    .item p{margin:0; color:var(--muted); font-size:14px}
+    .icon{
+      width:38px; height:38px;
+      border-radius:12px;
+      display:grid; place-items:center;
+      background:rgba(74,163,255,.12);
+      border:1px solid rgba(74,163,255,.22);
+    }
+    .icon svg{opacity:.95}
+
+    .two{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+    }
+    @media (max-width: 900px){ .two{grid-template-columns:1fr} }
+
+    .plans{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+      align-items:stretch;
+    }
+    @media (max-width: 980px){ .plans{grid-template-columns:1fr} }
+
+    .plan{
+      padding:18px;
+      position:relative;
+      overflow:hidden;
+    }
+    .plan .name{font-weight:900; font-size:18px}
+    .plan .price{font-size:32px; font-weight:1000; margin:8px 0 2px}
+    .plan .period{color:var(--muted); font-size:13px}
+    .plan ul{margin:14px 0 0; padding:0; list-style:none; display:grid; gap:10px}
+    .plan li{
+      display:flex; gap:10px; align-items:flex-start;
+      color:var(--muted);
+      font-size:14px;
+    }
+    .check{
+      width:20px; height:20px; border-radius:6px;
+      background:rgba(34,197,94,.15);
+      border:1px solid rgba(34,197,94,.26);
+      display:grid; place-items:center; flex:0 0 auto;
+      margin-top:2px;
+    }
+    .plan .cta{
+      margin-top:16px;
+      width:100%;
+    }
+    .tag{
+      position:absolute;
+      top:14px; right:14px;
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(245,158,11,.28);
+      background:rgba(245,158,11,.10);
+      color:#ffd08a;
+    }
+    .highlight{
+      border-color: rgba(74,163,255,.35);
+      box-shadow: 0 22px 70px rgba(74,163,255,.12);
+      background:linear-gradient(180deg, rgba(74,163,255,.10), rgba(255,255,255,.02));
+    }
+
+    .faq{
+      display:grid;
+      gap:10px;
+    }
+    details{
+      border:1px solid var(--stroke);
+      background:rgba(255,255,255,.03);
+      border-radius:14px;
+      padding:12px 14px;
+    }
+    summary{
+      cursor:pointer;
+      font-weight:800;
+      list-style:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    details p{color:var(--muted); margin:10px 0 0; font-size:14px}
+
+    .footer{
+      padding:30px 0 70px;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .floating{
+      position:fixed;
+      left:0; right:0; bottom:0;
+      padding:12px;
+      background:rgba(11,15,20,.70);
+      backdrop-filter: blur(14px);
+      border-top:1px solid var(--stroke);
+      z-index:30;
+    }
+    .floating .row{
+      display:flex; gap:12px; align-items:center; justify-content:space-between;
+      width:min(1100px, 92vw); margin:0 auto;
+      flex-wrap:wrap;
+    }
+    .floating .row .left{
+      display:flex; gap:10px; align-items:center; color:var(--muted);
+      font-size:13px;
+    }
+
+    /* Modal */
+    .modal-backdrop{
+      position:fixed; inset:0; z-index:50;
+      background:rgba(0,0,0,.55);
+      display:none;
+      align-items:center; justify-content:center;
+      padding:16px;
+    }
+    .modal{
+      width:min(560px, 96vw);
+      border-radius:18px;
+      border:1px solid var(--stroke);
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      box-shadow: var(--shadow);
+      padding:16px;
+    }
+    .modal header{
+      display:flex; align-items:flex-start; justify-content:space-between; gap:10px;
+      margin-bottom:8px;
+    }
+    .modal h3{margin:0; font-size:18px}
+    .modal .x{background:transparent; border:0; color:#fff; cursor:pointer; font-size:22px; line-height:1}
+    .form{
+      display:grid; gap:10px; margin-top:10px;
+    }
+    .field{
+      display:grid; gap:6px;
+    }
+    label{font-size:12px; color:var(--muted)}
+    input, select{
+      padding:12px 12px;
+      border-radius:12px;
+      border:1px solid var(--stroke);
+      background:rgba(11,15,20,.55);
+      color:#fff;
+      outline:none;
+    }
+    input::placeholder{color:rgba(168,179,199,.75)}
+    .split{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+    @media (max-width: 520px){ .split{grid-template-columns:1fr} }
+
+    .smallprint{
+      font-size:12px;
+      color:var(--muted);
+      margin:10px 0 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="container">
+      <div class="inner">
+        <div class="logo">
+          <span style="display:inline-grid;place-items:center;width:34px;height:34px;border-radius:12px;background:rgba(74,163,255,.12);border:1px solid rgba(74,163,255,.22);font-weight:900;">TRX</span>
+          <div>
+            <div style="font-size:14px; font-weight:900;">TRX PRO</div>
+            <div style="font-size:12px; color:var(--muted); margin-top:2px;">Página de Vendas</div>
+          </div>
+        </div>
+
+        <nav class="nav">
+          <a href="#beneficios">Benefícios</a>
+          <a href="#planos">Planos</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+
+        <button class="btn primary" id="btnTop">Comprar agora</button>
+      </div>
+    </div>
+  </div>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-grid">
+        <div>
+          <div class="badge">⚡ Entrega imediata • Acesso por e-mail</div>
+          <h1 class="h-title">Venda seu produto com uma página simples, rápida e que converte.</h1>
+          <p class="h-sub">
+            Estrutura completa de página de vendas para você publicar no Render (site estático).
+            Troque apenas textos, preços e o link do checkout.
+          </p>
+
+          <div class="chips">
+            <div class="chip">✅ <b>Mobile-first</b></div>
+            <div class="chip">✅ <b>CTA</b> fixo</div>
+            <div class="chip">✅ <b>FAQ</b> pronto</div>
+            <div class="chip">✅ <b>Planos</b> editáveis</div>
+          </div>
+
+          <div class="hero-cta">
+            <button class="btn primary" id="btnHero">Quero comprar agora</button>
+            <a class="btn" href="#planos">Ver planos</a>
+          </div>
+
+          <p class="note">
+            *Aviso: nenhuma promessa de ganho/resultado é garantida. Use textos reais e transparentes.
+          </p>
+        </div>
+
+        <div class="card proof">
+          <div style="display:flex; justify-content:space-between; gap:10px; align-items:flex-start;">
+            <div>
+              <div style="font-weight:900; font-size:18px;">Prova social (exemplo)</div>
+              <div style="color:var(--muted); font-size:13px; margin-top:4px;">Substitua pelos seus números reais.</div>
+            </div>
+            <div class="badge">🔒 Seguro</div>
+          </div>
+
+          <div class="mini">
+            <div class="metric">
+              <div class="big">+1.240</div>
+              <div class="small">Clientes/usuários</div>
+            </div>
+            <div class="metric">
+              <div class="big">4,9★</div>
+              <div class="small">Avaliação média</div>
+            </div>
+            <div class="metric">
+              <div class="big">24h</div>
+              <div class="small">Entrega imediata</div>
+            </div>
+          </div>
+
+          <div style="margin-top:14px; border-top:1px solid var(--stroke); padding-top:14px;">
+            <div style="font-weight:900; margin-bottom:8px;">O que você recebe</div>
+            <div style="color:var(--muted); font-size:14px;">
+              ✅ Acesso ao produto • ✅ Suporte • ✅ Atualizações (se aplicável) • ✅ Guia rápido
+            </div>
+          </div>
+
+          <div class="note">Dica: adicione prints, vídeos curtos e depoimentos reais aqui.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="beneficios">
+      <h2 class="section-title">Benefícios</h2>
+      <p class="section-sub">Três motivos para o cliente tomar a decisão agora.</p>
+
+      <div class="grid-3">
+        <div class="card item">
+          <div class="icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2l3 7 7 3-7 3-3 7-3-7-7-3 7-3 3-7z" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </div>
+          <h3>Entrega imediata</h3>
+          <p>Após a confirmação do pagamento, o acesso é liberado automaticamente (ajuste ao seu fluxo).</p>
+        </div>
+
+        <div class="card item">
+          <div class="icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </div>
+          <h3>Foco em conversão</h3>
+          <p>CTA visível, seção de planos clara e FAQ para quebrar objeções rápido.</p>
+        </div>
+
+        <div class="card item">
+          <div class="icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Simples de editar</h3>
+          <p>Um arquivo só. Você troca textos, preços e links sem complicação.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="two">
+        <div class="card item">
+          <h2 class="section-title" style="margin-top:0">Garantia / Transparência</h2>
+          <p class="section-sub">
+            Use uma garantia real (ex.: 7 dias) e deixe claro o que o cliente recebe.
+          </p>
+          <div style="display:grid; gap:10px; color:var(--muted); font-size:14px;">
+            <div>🛡️ Garantia: <b style="color:#fff">7 dias</b> (exemplo)</div>
+            <div>📩 Suporte: <b style="color:#fff">WhatsApp / E-mail</b></div>
+            <div>⚠️ Importante: resultados variam, sem promessa garantida.</div>
+          </div>
+        </div>
+
+        <div class="card item">
+          <h2 class="section-title" style="margin-top:0">Depoimentos (exemplo)</h2>
+          <p class="section-sub">Substitua por depoimentos reais + print.</p>
+          <div style="display:grid; gap:10px;">
+            <div class="metric" style="padding:14px;">
+              <div style="font-weight:900;">“Muito completo. Instalação fácil e suporte rápido.”</div>
+              <div class="small">— Cliente A</div>
+            </div>
+            <div class="metric" style="padding:14px;">
+              <div style="font-weight:900;">“Melhorou muito minha organização. Recomendo.”</div>
+              <div class="small">— Cliente B</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="planos">
+      <h2 class="section-title">Planos</h2>
+      <p class="section-sub">Escolha a opção ideal. (Edite preços e benefícios.)</p>
+
+      <div class="plans">
+        <div class="card plan">
+          <div class="name">TRX BRONZE</div>
+          <div class="price">R$ 97</div>
+          <div class="period">Pagamento único</div>
+          <ul>
+            <li><span class="check">✓</span> Acesso ao produto</li>
+            <li><span class="check">✓</span> Guia rápido</li>
+            <li><span class="check">✓</span> Suporte básico</li>
+          </ul>
+          <button class="btn plan cta primary" data-plan="BRONZE">Comprar BRONZE</button>
+        </div>
+
+        <div class="card plan highlight">
+          <div class="tag">Mais vendido</div>
+          <div class="name">TRX GOLD</div>
+          <div class="price">R$ 197</div>
+          <div class="period">Pagamento único</div>
+          <ul>
+            <li><span class="check">✓</span> Tudo do Bronze</li>
+            <li><span class="check">✓</span> Conteúdo extra</li>
+            <li><span class="check">✓</span> Suporte prioritário</li>
+            <li><span class="check">✓</span> Atualizações (se houver)</li>
+          </ul>
+          <button class="btn plan cta primary" data-plan="GOLD">Comprar GOLD</button>
+        </div>
+
+        <div class="card plan">
+          <div class="name">TRX BLACK</div>
+          <div class="price">R$ 497</div>
+          <div class="period">Pagamento único</div>
+          <ul>
+            <li><span class="check">✓</span> Tudo do Gold</li>
+            <li><span class="check">✓</span> Onboarding/ajuda</li>
+            <li><span class="check">✓</span> Suporte VIP</li>
+          </ul>
+          <button class="btn plan cta primary" data-plan="BLACK">Comprar BLACK</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <h2 class="section-title">FAQ</h2>
+      <p class="section-sub">Perguntas que mais quebram objeções na compra.</p>
+
+      <div class="faq">
+        <details>
+          <summary>Como recebo o acesso após o pagamento?</summary>
+          <p>Você pode enviar por e-mail automaticamente, liberar um link, ou redirecionar para o WhatsApp. Aqui está pronto para você configurar.</p>
+        </details>
+        <details>
+          <summary>Funciona no celular?</summary>
+          <p>Sim, essa página é mobile-first e abre bem em qualquer tela.</p>
+        </details>
+        <details>
+          <summary>Qual a garantia?</summary>
+          <p>Coloque a sua garantia real (ex.: 7 dias) e explique as condições com transparência.</p>
+        </details>
+        <details>
+          <summary>Tem suporte?</summary>
+          <p>Sim. Informe seu canal (WhatsApp/e-mail) e horário de atendimento.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="footer">
+      <div class="card item">
+        <div style="font-weight:900; font-size:16px;">Aviso importante</div>
+        <p style="margin:8px 0 0; color:var(--muted); font-size:13px;">
+          Essa página é um modelo. Ajuste textos e informações para refletir a realidade do seu produto/serviço.
+          Evite promessas irreais e siga as políticas das plataformas de anúncio.
+        </p>
+      </div>
+
+      <div style="margin-top:16px; text-align:center;">
+        © <span id="year"></span> TRX PRO • Todos os direitos reservados
+      </div>
+    </section>
+  </main>
+
+  <div class="floating">
+    <div class="row">
+      <div class="left">
+        🔥 Oferta ativa • <b style="color:#fff">Entrega imediata</b> • Suporte incluso
+      </div>
+      <button class="btn primary" id="btnBottom">Comprar agora</button>
+    </div>
+  </div>
+
+  <!-- MODAL -->
+  <div class="modal-backdrop" id="backdrop" role="dialog" aria-modal="true" aria-label="Finalizar compra">
+    <div class="modal">
+      <header>
+        <div>
+          <h3>Finalizar compra</h3>
+          <div style="color:var(--muted); font-size:13px; margin-top:4px;">
+            Preencha e continue para o pagamento.
+          </div>
+        </div>
+        <button class="x" id="closeModal" aria-label="Fechar">×</button>
+      </header>
+
+      <div class="form">
+        <div class="split">
+          <div class="field">
+            <label for="nome">Seu nome</label>
+            <input id="nome" placeholder="Ex.: Guilherme" />
+          </div>
+          <div class="field">
+            <label for="whats">WhatsApp</label>
+            <input id="whats" placeholder="(11) 99999-9999" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="email">E-mail</label>
+          <input id="email" type="email" placeholder="seuemail@exemplo.com" />
+        </div>
+
+        <div class="field">
+          <label for="plano">Plano</label>
+          <select id="plano">
+            <option value="BRONZE">TRX BRONZE</option>
+            <option value="GOLD" selected>TRX GOLD</option>
+            <option value="BLACK">TRX BLACK</option>
+          </select>
+        </div>
+
+        <button class="btn primary" id="goPay">Ir para pagamento</button>
+        <div class="smallprint">
+          Ao continuar, você concorda em fornecer seus dados para contato e suporte.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ========= CONFIGURE AQUI =========
+    // Coloque seu link do checkout (InfinitePay, Mercado Pago, etc.)
+    const CHECKOUT_LINKS = {
+      "BRONZE": "https://seu-checkout-aqui.com/bronze",
+      "GOLD":   "https://seu-checkout-aqui.com/gold",
+      "BLACK":  "https://seu-checkout-aqui.com/black"
+    };
+
+    // Se quiser usar WhatsApp ao invés de checkout:
+    const USE_WHATSAPP = false; // true = manda pro WhatsApp, false = manda pro checkout
+    const WHATSAPP_NUMBER = "55XXXXXXXXXXX"; // ex: 5511999999999 (sem + e sem espaços)
+    // =================================
+
+    const yearEl = document.getElementById('year');
+    yearEl.textContent = new Date().getFullYear();
+
+    const backdrop = document.getElementById('backdrop');
+    const closeModal = document.getElementById('closeModal');
+    const btnTop = document.getElementById('btnTop');
+    const btnHero = document.getElementById('btnHero');
+    const btnBottom = document.getElementById('btnBottom');
+    const goPay = document.getElementById('goPay');
+    const planoSel = document.getElementById('plano');
+
+    function openModal(defaultPlan){
+      if(defaultPlan) planoSel.value = defaultPlan;
+      backdrop.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+    function hideModal(){
+      backdrop.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+    btnTop.addEventListener('click', () => openModal("GOLD"));
+    btnHero.addEventListener('click', () => openModal("GOLD"));
+    btnBottom.addEventListener('click', () => openModal("GOLD"));
+
+    closeModal.addEventListener('click', hideModal);
+    backdrop.addEventListener('click', (e) => { if(e.target === backdrop) hideModal(); });
+    document.addEventListener('keydown', (e) => { if(e.key === 'Escape') hideModal(); });
+
+    document.querySelectorAll('[data-plan]').forEach(btn => {
+      btn.addEventListener('click', () => openModal(btn.dataset.plan));
+    });
+
+    function sanitize(str){
+      return (str || "").toString().trim();
+    }
+
+    goPay.addEventListener('click', () => {
+      const nome = sanitize(document.getElementById('nome').value);
+      const whats = sanitize(document.getElementById('whats').value);
+      const email = sanitize(document.getElementById('email').value);
+      const plano = planoSel.value;
+
+      const msg = `Olá! Quero comprar o plano ${plano}. Nome: ${nome || "-"} | Whats: ${whats || "-"} | Email: ${email || "-"}`;
+
+      if (USE_WHATSAPP) {
+        const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+        window.location.href = url;
+        return;
+      }
+
+      const checkout = CHECKOUT_LINKS[plano] || CHECKOUT_LINKS["GOLD"];
+      window.location.href = checkout;
+    });
+  </script>
+</body>
+</html>
