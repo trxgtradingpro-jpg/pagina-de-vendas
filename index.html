@@ -2,29 +2,22 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>TRX PRO — Página Oficial</title>
-  <meta name="description" content="TRX PRO — Robô 100% automático para Mini Índice." />
+  <meta name="description" content="TRX PRO — Robô 100% automático para Mini Índice.">
 
   <!-- Fonte moderna -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
-    /* =========================================================
-       BASE / THEME
-    ========================================================== */
     :root{
-      --bg0:#05070a;
-      --bg1:#070a0d;
-      --panel: rgba(255,255,255,.04);
-      --panel2: rgba(255,255,255,.03);
-      --stroke: rgba(255,255,255,.10);
-      --stroke2: rgba(255,255,255,.14);
-      --text: rgba(255,255,255,.93);
-      --muted: rgba(255,255,255,.70);
-      --muted2: rgba(255,255,255,.55);
+      --bg:#05070a;
+      --bg2:#060a10;
+      --text:#eef6ff;
+      --muted:rgba(238,246,255,.68);
+      --muted2:rgba(238,246,255,.55);
 
       --green:#19e39a;
       --green2:#0bbf7f;
@@ -35,137 +28,108 @@
       --blue:#4aa3ff;
       --purple:#a855f7;
 
-      --shadow: 0 24px 90px rgba(0,0,0,.65);
-      --shadow2: 0 18px 60px rgba(0,0,0,.55);
+      --stroke:rgba(255,255,255,.08);
+      --stroke2:rgba(255,255,255,.12);
 
-      --r14: 14px;
-      --r18: 18px;
-      --r22: 22px;
-      --r999: 999px;
+      --shadow: 0 24px 90px rgba(0,0,0,.60);
+      --radius:22px;
 
-      --ease: cubic-bezier(.2,.8,.2,1);
+      --grid: rgba(255,255,255,.09);
     }
 
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
     body{
       margin:0;
-      color:var(--text);
-      font-family: "Manrope", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       background:
-        radial-gradient(1100px 650px at 22% 10%, rgba(25,227,154,.18), transparent 55%),
-        radial-gradient(900px 580px at 80% 22%, rgba(255,138,31,.10), transparent 60%),
-        radial-gradient(900px 650px at 60% 85%, rgba(25,227,154,.13), transparent 60%),
-        linear-gradient(180deg, var(--bg0) 0%, var(--bg1) 100%);
+        radial-gradient(1100px 650px at 20% 8%, rgba(25,227,154,.18), transparent 58%),
+        radial-gradient(900px 600px at 80% 18%, rgba(255,138,31,.12), transparent 62%),
+        radial-gradient(900px 700px at 60% 86%, rgba(168,85,247,.10), transparent 60%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg2) 50%, var(--bg) 100%);
+      color:var(--text);
       overflow-x:hidden;
     }
 
-    a{color:inherit; text-decoration:none}
-    img{max-width:100%; display:block}
-
-    .container{width:min(1120px, 92vw); margin:0 auto;}
-    .sp{height:18px}
-    .hide-mobile{display:block}
-    @media (max-width:720px){ .hide-mobile{display:none} }
-
-    /* Grid background */
+    /* Fundo grid + vinheta */
     .grid-bg{
-      position:fixed;
-      inset:0;
+      position:fixed; inset:0;
       pointer-events:none;
-      opacity:.20;
+      opacity:.16;
       background:
-        linear-gradient(to right, rgba(255,255,255,.12) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255,255,255,.12) 1px, transparent 1px);
+        linear-gradient(to right, var(--grid) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
       background-size: 64px 64px;
-      mask-image: radial-gradient(circle at 50% 18%, rgba(0,0,0,1) 0%, rgba(0,0,0,.6) 42%, rgba(0,0,0,0) 78%);
+      mask-image: radial-gradient(circle at 50% 18%, rgba(0,0,0,1) 0%, rgba(0,0,0,.65) 45%, rgba(0,0,0,0) 76%);
     }
     .vignette{
-      position:fixed;
-      inset:-30px;
+      position:fixed; inset:-40px;
       pointer-events:none;
-      background: radial-gradient(circle at 50% 22%, transparent 0%, rgba(0,0,0,.38) 56%, rgba(0,0,0,.75) 92%);
+      background: radial-gradient(circle at 50% 22%, transparent 0%, rgba(0,0,0,.35) 55%, rgba(0,0,0,.75) 90%);
     }
 
-    /* Card */
-    .card{
-      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
-      border:1px solid var(--stroke);
-      border-radius: var(--r18);
-      box-shadow: var(--shadow2);
-    }
+    .container{ width:min(1120px, 92vw); margin:0 auto; }
+    .center{ display:flex; align-items:center; justify-content:center; }
 
-    /* =========================================================
-       TOP TIMER BAR
-    ========================================================== */
-    .topbar{
-      padding: 18px 0 6px;
-    }
-    .pill-timer{
-      margin: 0 auto;
+    /* Pílula topo (timer) */
+    .top-pill{
+      margin: 18px auto 10px;
       width: fit-content;
-      display:flex;
-      align-items:center;
-      gap:10px;
       padding: 10px 16px;
-      border-radius: var(--r999);
-      border: 2px solid rgba(255,58,58,.85);
+      border-radius: 999px;
+      border: 2px solid rgba(255,58,58,.80);
+      color: rgba(255,130,130,1);
       background: rgba(255,58,58,.06);
-      color: rgba(255,150,150,1);
       font-weight: 900;
       letter-spacing:.2px;
-      box-shadow: 0 14px 40px rgba(255,58,58,.08);
+      display:flex;
+      gap:10px;
+      align-items:center;
+      box-shadow: 0 16px 45px rgba(255,58,58,.10);
     }
-    .pill-timer .dot{
-      width:10px;height:10px;border-radius:999px;
+    .top-pill .dot{
+      width:10px; height:10px;
+      border-radius:999px;
       background: rgba(255,58,58,1);
-      box-shadow: 0 0 18px rgba(255,58,58,.65);
+      box-shadow: 0 0 18px rgba(255,58,58,.55);
     }
 
-    /* =========================================================
-       HERO
-    ========================================================== */
+    /* HERO */
     header.hero{
-      padding: 6px 0 18px;
+      padding: 12px 0 18px;
       text-align:center;
-      position:relative;
     }
-
     .logo-wrap{
+      margin-top: 6px;
       display:flex;
       flex-direction:column;
       align-items:center;
-      gap:12px;
-      margin-top: 6px;
+      gap:14px;
     }
-
     .logo-box{
-      width:min(440px, 92vw);
+      width:min(460px, 88vw);
       aspect-ratio: 16/10;
-      border-radius: 14px;
-      background: rgba(0,0,0,.35);
+      border-radius: 16px;
+      background: rgba(0,0,0,.30);
       border: 1px solid rgba(255,255,255,.06);
-      display:grid;
-      place-items:center;
+      box-shadow: 0 24px 80px rgba(0,0,0,.55);
+      display:grid; place-items:center;
       overflow:hidden;
       position:relative;
     }
     .logo-box:before{
       content:"";
-      position:absolute;
-      inset:-2px;
-      background: radial-gradient(circle at 30% 20%, rgba(25,227,154,.25), transparent 55%),
-                  radial-gradient(circle at 80% 60%, rgba(255,138,31,.16), transparent 60%);
-      filter: blur(18px);
-      opacity:.9;
+      position:absolute; inset:-2px;
+      background: radial-gradient(500px 200px at 50% 30%, rgba(25,227,154,.18), transparent 60%);
       pointer-events:none;
     }
     .logo-box img{
-      position:relative;
-      max-width:78%;
+      max-width: 78%;
       height:auto;
-      filter: drop-shadow(0 18px 40px rgba(0,0,0,.7));
-      transform: translateZ(0);
+      display:block;
+      filter: drop-shadow(0 14px 32px rgba(0,0,0,.7));
+      position:relative;
+      z-index:1;
     }
 
     .live-pill{
@@ -173,22 +137,22 @@
       padding: 12px 18px;
       border-radius: 14px;
       border: 2px solid rgba(25,227,154,.55);
-      background: rgba(25,227,154,.08);
       color: rgba(25,227,154,1);
+      background: rgba(25,227,154,.08);
       font-weight: 900;
       display:flex;
       align-items:center;
       gap:10px;
-      box-shadow: 0 16px 50px rgba(25,227,154,.10);
+      box-shadow: 0 18px 55px rgba(25,227,154,.10);
     }
     .live-pill .live-dot{
       width:10px;height:10px;border-radius:999px;background:rgba(25,227,154,1);
-      box-shadow: 0 0 20px rgba(25,227,154,.7);
+      box-shadow: 0 0 18px rgba(25,227,154,.60);
     }
 
     .headline{
-      margin: 20px auto 0;
-      width:min(980px, 96vw);
+      margin: 22px auto 0;
+      width:min(960px, 96vw);
       line-height: .92;
       letter-spacing: -1.2px;
       font-weight: 1000;
@@ -197,7 +161,7 @@
     .headline .r{color: var(--red)}
     .headline .g{color: rgba(25,227,154,.85)}
     .headline .w{color:#fff}
-    .headline .big{font-size: clamp(46px, 6.5vw, 98px)}
+    .headline .big{font-size: clamp(44px, 6.5vw, 98px)}
     .sub{
       margin: 14px auto 0;
       width:min(760px, 92vw);
@@ -206,15 +170,8 @@
       font-weight: 800;
     }
     .sub b{color: var(--green)}
-    .cta{
-      margin-top: 18px;
-      display:flex;
-      justify-content:center;
-      gap:12px;
-      flex-wrap:wrap;
-    }
 
-    /* Buttons */
+    /* Botões */
     .btn{
       appearance:none;
       border:0;
@@ -226,61 +183,58 @@
       display:inline-flex;
       align-items:center;
       gap:10px;
-      transition: transform .18s var(--ease), filter .18s var(--ease), opacity .18s var(--ease);
+      transition: .18s transform, .18s filter, .18s box-shadow;
       user-select:none;
       position:relative;
-      overflow:hidden;
-      transform: translateZ(0);
+      isolation:isolate;
     }
-    .btn:hover{transform: translateY(-2px); filter: brightness(1.06)}
-    .btn:active{transform: translateY(0px); filter: brightness(.98)}
-    .btn:focus{outline: 2px solid rgba(25,227,154,.35); outline-offset: 2px}
+    .btn:hover{ transform: translateY(-1px); filter: brightness(1.06); }
+    .btn:active{ transform: translateY(0px) scale(.99); }
 
-    .btn-primary{
+    .btn.green{
       background: linear-gradient(180deg, rgba(25,227,154,1), rgba(11,191,127,1));
       color:#03100b;
-      box-shadow: 0 22px 60px rgba(25,227,154,.18);
+      box-shadow: 0 18px 46px rgba(25,227,154,.18);
     }
-    .btn-primary:before{
+    .btn.green:before{
       content:"";
-      position:absolute; inset:-2px;
-      background: radial-gradient(circle at 20% 0%, rgba(255,255,255,.45), transparent 45%);
-      opacity:.25;
+      position:absolute; inset:0;
+      border-radius: inherit;
+      background: radial-gradient(300px 80px at 30% 10%, rgba(255,255,255,.35), transparent 60%);
+      opacity:.55;
+      z-index:-1;
       pointer-events:none;
     }
-
-    .btn-ghost{
-      background: rgba(255,255,255,.06);
-      color:#fff;
-      border:1px solid rgba(255,255,255,.14);
-      box-shadow: 0 18px 50px rgba(0,0,0,.25);
+    .btn.white{
+      background:#fff;
+      color:#000;
+      padding: 14px 20px;
+      border-radius: 14px;
+      font-weight: 1000;
+      box-shadow: 0 16px 50px rgba(0,0,0,.30);
     }
 
-    /* =========================================================
-       CHART (PROOF)
-    ========================================================== */
+    .cta{ margin-top: 18px; display:flex; justify-content:center; }
+    .mid-cta{ margin: 18px auto 0; width:min(980px,96vw); display:flex; justify-content:center; }
+
+    /* Chart */
     .chart{
-      margin: 20px auto 0;
-      width:min(1000px, 96vw);
+      margin: 18px auto 0;
+      width:min(980px, 96vw);
       border-radius: 18px;
-      border:2px solid rgba(25,227,154,.35);
+      border: 2px solid rgba(25,227,154,.32);
       background: rgba(8,14,12,.55);
-      box-shadow: var(--shadow);
+      box-shadow: 0 20px 95px rgba(0,0,0,.55);
       overflow:hidden;
       position:relative;
     }
     .chart:before{
       content:"";
-      position:absolute;
-      inset:-2px;
-      background: radial-gradient(circle at 25% 15%, rgba(25,227,154,.30), transparent 55%),
-                  radial-gradient(circle at 80% 70%, rgba(255,138,31,.14), transparent 60%);
-      filter: blur(18px);
-      opacity:.55;
+      position:absolute; inset:-2px;
+      background: radial-gradient(700px 250px at 50% 0%, rgba(25,227,154,.12), transparent 60%);
       pointer-events:none;
     }
     .chart-head{
-      position:relative;
       padding: 12px 14px;
       display:flex;
       align-items:center;
@@ -289,137 +243,114 @@
       color: rgba(255,255,255,.95);
       gap:10px;
       border-bottom: 1px solid rgba(255,255,255,.08);
-      background: rgba(0,0,0,.18);
-    }
-    .chart img{width:100%; display:block; position:relative}
-    .metrics{
       position:relative;
+      z-index:1;
+    }
+    .chart img{ width:100%; display:block; position:relative; z-index:1; }
+
+    .metrics{
       display:grid;
       grid-template-columns: repeat(3,1fr);
       gap: 10px;
       padding: 12px;
-      background: rgba(8,14,12,.66);
+      background: rgba(8,14,12,.65);
       border-top: 1px solid rgba(255,255,255,.06);
+      position:relative;
+      z-index:1;
     }
-    @media (max-width: 720px){ .metrics{grid-template-columns:1fr} }
-
+    @media (max-width: 700px){ .metrics{grid-template-columns:1fr} }
     .metric{
       text-align:center;
-      padding: 10px 12px;
+      padding: 12px 12px;
       border-radius: 14px;
-      background: rgba(0,0,0,.25);
+      background: rgba(0,0,0,.22);
       border: 1px solid rgba(255,255,255,.08);
+      box-shadow: 0 18px 60px rgba(0,0,0,.25);
     }
-    .metric .v{font-weight: 1000; font-size: 24px;}
-    .metric .l{margin-top: 2px; font-size: 12px; color: var(--muted2); font-weight: 800; letter-spacing:.2px;}
+    .metric .v{
+      font-weight: 1000;
+      font-size: 24px;
+      letter-spacing:-.2px;
+    }
+    .metric .l{
+      margin-top: 2px;
+      font-size: 12px;
+      color: var(--muted2);
+      font-weight: 800;
+      letter-spacing:.2px;
+    }
     .metric .v.green{color: var(--green)}
     .metric .v.yellow{color: var(--yellow)}
     .metric .v.blue{color: #67b0ff}
 
-    /* =========================================================
-       FEATURES
-    ========================================================== */
+    /* Features */
     .row4{
       margin: 26px auto 0;
-      width:min(1000px, 96vw);
+      width:min(980px, 96vw);
       display:grid;
       grid-template-columns: repeat(4,1fr);
       gap: 14px;
     }
-    @media (max-width: 1000px){ .row4{grid-template-columns:1fr 1fr} }
+    @media (max-width: 980px){ .row4{grid-template-columns:1fr 1fr} }
     @media (max-width: 560px){ .row4{grid-template-columns:1fr} }
 
     .feat{
-      padding: 16px;
+      padding: 16px 16px;
       border-radius: 16px;
-      background: rgba(0,0,0,.28);
-      border: 1px solid rgba(255,255,255,.12);
-      min-height: 92px;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      gap:8px;
-      box-shadow: 0 18px 70px rgba(0,0,0,.35);
+      background: rgba(0,0,0,.22);
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: 0 18px 60px rgba(0,0,0,.30);
       position:relative;
       overflow:hidden;
-      transition: transform .18s var(--ease), border-color .18s var(--ease), background .18s var(--ease);
     }
-    .feat:hover{
-      transform: translateY(-2px);
-      background: rgba(255,255,255,.03);
-      border-color: rgba(25,227,154,.24);
-    }
-    .feat strong{font-weight:1000}
-    .feat span{color: var(--muted2); font-weight:800; font-size: 13px}
     .feat:before{
       content:"";
-      position:absolute;
-      inset:-2px;
-      background: radial-gradient(circle at 20% 0%, rgba(25,227,154,.18), transparent 55%);
-      opacity:.0;
-      transition: opacity .18s var(--ease);
+      position:absolute; inset:-2px;
+      background: radial-gradient(360px 120px at 10% 0%, rgba(25,227,154,.14), transparent 60%);
+      opacity:.8;
+      pointer-events:none;
     }
-    .feat:hover:before{opacity:1}
+    .feat strong{font-weight:1000; display:block}
+    .feat span{color: var(--muted2); font-weight:800; font-size: 13px; display:block; margin-top:6px}
 
-    .mid-cta{
-      margin: 18px auto 0;
-      width:min(1000px, 96vw);
-      display:flex;
-      justify-content:center;
-    }
-    .btn-white{
-      background:#fff;
-      color:#000;
-      padding: 14px 20px;
-      border-radius: 14px;
-      font-weight: 1000;
-      border:0;
-      cursor:pointer;
-      box-shadow: 0 20px 60px rgba(255,255,255,.10);
-      transition: transform .18s var(--ease), filter .18s var(--ease);
-    }
-    .btn-white:hover{transform: translateY(-2px); filter: brightness(1.04)}
-
-    /* =========================================================
-       BONUS SECTION
-    ========================================================== */
-    .section{
-      padding: 44px 0 10px;
-    }
+    /* Seções */
+    section{ padding: 46px 0 8px; }
     .pill{
       width: fit-content;
-      margin:0 auto 14px;
+      margin:0 auto 12px;
       padding: 10px 14px;
-      border-radius: var(--r999);
-      border: 2px solid rgba(255,138,31,.45);
-      background: rgba(255,138,31,.08);
-      color: rgba(255,170,100,1);
+      border-radius: 999px;
       font-weight: 1000;
       letter-spacing:.2px;
-      box-shadow: 0 16px 60px rgba(255,138,31,.06);
+    }
+
+    /* BONUS */
+    .bonus .pill{
+      border: 2px solid rgba(255,138,31,.42);
+      background: rgba(255,138,31,.08);
+      color: rgba(255,180,120,1);
     }
     .title{
       text-align:center;
       margin: 0 auto;
-      width:min(1000px, 96vw);
+      width:min(980px, 96vw);
       font-weight: 1000;
-      letter-spacing:-.9px;
-      line-height:1.05;
+      letter-spacing:-.8px;
+      line-height:1.06;
       font-size: clamp(28px, 3.8vw, 56px);
     }
-    .title .accent{color: var(--orange)}
+    .title .accent-orange{ color: var(--orange); }
     .subtitle{
       text-align:center;
       margin: 10px auto 0;
-      width:min(820px, 92vw);
+      width:min(760px, 92vw);
       color: var(--muted2);
       font-weight: 800;
-      font-size: 15px;
     }
 
     .bonus-grid{
       margin: 24px auto 0;
-      width:min(1000px, 96vw);
+      width:min(980px, 96vw);
       display:grid;
       grid-template-columns: 1fr 1.25fr;
       gap: 14px;
@@ -427,78 +358,91 @@
     }
     @media (max-width: 900px){ .bonus-grid{grid-template-columns:1fr} }
 
-    .poster{
-      border-radius: 20px;
-      border: 2px solid rgba(255,138,31,.25);
-      background: rgba(255,138,31,.06);
-      padding: 16px;
-      display:grid;
-      place-items:center;
-      min-height: 280px;
-      position:relative;
+    .panel{
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.22);
+      box-shadow: var(--shadow);
       overflow:hidden;
+      position:relative;
     }
-    .poster:before{
+    .panel:before{
       content:"";
       position:absolute; inset:-2px;
-      background: radial-gradient(circle at 30% 20%, rgba(255,138,31,.25), transparent 55%),
-                  radial-gradient(circle at 80% 70%, rgba(25,227,154,.14), transparent 60%);
-      filter: blur(18px);
-      opacity:.65;
+      background: radial-gradient(700px 220px at 40% 0%, rgba(255,138,31,.12), transparent 60%);
       pointer-events:none;
     }
-    .poster .box{
-      position:relative;
+
+    .elliot{
+      min-height: 280px;
+      display:grid;
+      place-items:center;
+      padding: 18px;
+      border: 2px solid rgba(255,138,31,.22);
+      background: rgba(255,138,31,.06);
+    }
+    .elliot .box{
       width: 100%;
       max-width: 360px;
       aspect-ratio: 1/1;
       border-radius: 18px;
-      background: rgba(0,0,0,.35);
-      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(0,0,0,.34);
+      border: 1px solid rgba(255,255,255,.09);
       display:grid;
       place-items:center;
       overflow:hidden;
+      box-shadow: 0 18px 60px rgba(0,0,0,.35);
+      position:relative;
     }
-    .poster img{max-width: 80%; height:auto; display:block}
+    .elliot .box:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(380px 180px at 50% 20%, rgba(255,138,31,.16), transparent 60%);
+      pointer-events:none;
+    }
+    .elliot img{ max-width: 80%; height:auto; display:block; position:relative; z-index:1; }
 
-    .bonus-list{
-      display:grid;
-      gap: 12px;
-    }
+    .bonus-list{ display:grid; gap: 12px; padding: 18px; }
     .bitem{
       padding: 16px;
       border-radius: 18px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(0,0,0,.22);
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.18);
       display:flex;
       gap: 14px;
       align-items:flex-start;
+      box-shadow: 0 18px 55px rgba(0,0,0,.25);
       position:relative;
       overflow:hidden;
-      transition: transform .18s var(--ease), border-color .18s var(--ease), background .18s var(--ease);
     }
-    .bitem:hover{
-      transform: translateY(-2px);
-      background: rgba(255,255,255,.03);
-      border-color: rgba(25,227,154,.22);
+    .bitem:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(460px 140px at 10% 0%, rgba(25,227,154,.10), transparent 62%);
+      opacity:.8;
+      pointer-events:none;
     }
     .bicon{
-      width: 42px; height:42px;
-      border-radius: 14px;
+      width: 40px; height:40px;
+      border-radius: 12px;
       display:grid; place-items:center;
       background: rgba(25,227,154,.12);
       border: 1px solid rgba(25,227,154,.22);
       flex: 0 0 auto;
       margin-top:2px;
-      font-weight: 1000;
+      font-weight:1000;
       color: rgba(25,227,154,1);
+      box-shadow: 0 12px 30px rgba(25,227,154,.10);
+      position:relative;
+      z-index:1;
     }
-    .bitem h4{margin:0; font-weight:1000}
-    .bitem p{margin:6px 0 0; color: var(--muted2); font-weight:800; font-size: 13px}
+    .btext{ position:relative; z-index:1; }
+    .bitem h4{ margin:0; font-weight:1000; letter-spacing:-.2px }
+    .bitem p{ margin:6px 0 0; color: var(--muted2); font-weight:800; font-size: 13px; line-height:1.4; }
 
     .important{
       margin: 16px auto 0;
-      width:min(1000px, 96vw);
+      width:min(980px, 96vw);
       padding: 14px 16px;
       border-radius: 16px;
       background: rgba(255,255,255,.03);
@@ -507,90 +451,104 @@
       font-weight:800;
       font-size: 13px;
       text-align:center;
+      box-shadow: 0 18px 60px rgba(0,0,0,.25);
     }
-    .important b{color:#fff}
+    .important b{ color:#fff; }
 
-    /* =========================================================
-       PLANS (REFEITOS)
-    ========================================================== */
-    .plans{
-      padding: 34px 0 12px;
-      text-align:center;
-    }
-    .pill-red{
-      width: fit-content;
-      margin:0 auto 10px;
-      padding: 10px 14px;
-      border-radius: var(--r999);
-      border: 2px solid rgba(255,58,58,.45);
+    /* =======================
+       PLANOS — AQUI É O UPGRADE
+       ======================= */
+    .plans .pill{
+      border: 2px solid rgba(255,58,58,.42);
       background: rgba(255,58,58,.06);
       color: rgba(255,170,170,1);
-      font-weight: 1000;
-      box-shadow: 0 16px 60px rgba(255,58,58,.06);
     }
+    .plans{ padding: 34px 0 30px; text-align:center; }
+    .title .accent-green{ color: rgba(25,227,154,.85); }
 
-    .plans-title{
-      margin: 0 auto;
-      width:min(1000px, 96vw);
-      font-weight: 1000;
-      letter-spacing:-.9px;
-      line-height:1.05;
-      font-size: clamp(28px, 3.8vw, 56px);
-    }
-    .plans-title .green{color: rgba(25,227,154,.86)}
-
-    /* grid */
-    .plan-grid{
+    .plans-wrap{
       margin: 22px auto 0;
-      width:min(1040px, 96vw);
+      width:min(1100px, 96vw);
+    }
+
+    .plan-grid{
       display:grid;
       grid-template-columns: repeat(5, 1fr);
       gap: 14px;
       align-items:stretch;
     }
-    @media (max-width: 1100px){ .plan-grid{grid-template-columns:1fr 1fr} }
-    @media (max-width: 560px){ .plan-grid{grid-template-columns:1fr} }
+    @media (max-width: 1120px){
+      .plan-grid{ grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 560px){
+      .plan-grid{ grid-template-columns: 1fr; }
+    }
 
-    /* premium plan card with gradient border */
+    /* Card com borda gradiente de verdade */
     .plan{
       position:relative;
       border-radius: 22px;
-      padding: 16px;
-      min-height: 190px;
-      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
-      border:1px solid rgba(255,255,255,.10);
-      box-shadow: var(--shadow2);
+      padding: 14px;
+      background: rgba(0,0,0,.22);
+      box-shadow: 0 22px 80px rgba(0,0,0,.45);
       overflow:hidden;
       transform: translateZ(0);
-      transition: transform .18s var(--ease), filter .18s var(--ease);
-      text-align:left;
     }
-    .plan:hover{transform: translateY(-3px); filter: brightness(1.05)}
-    .plan:before{
+    .plan::before{
       content:"";
-      position:absolute; inset:-2px;
-      border-radius: 24px;
-      background: radial-gradient(circle at 20% 0%, rgba(255,255,255,.20), transparent 50%);
-      opacity:.22;
-      pointer-events:none;
-    }
-    .plan:after{
-      content:"";
-      position:absolute;
-      inset:-1px;
-      border-radius: 24px;
-      padding:1px;
-      background: linear-gradient(135deg, rgba(255,255,255,.18), rgba(255,255,255,0));
+      position:absolute; inset:0;
+      padding: 1.5px;
+      border-radius: inherit;
+      background: var(--border, linear-gradient(90deg, rgba(255,255,255,.15), rgba(255,255,255,.05)));
       -webkit-mask:
         linear-gradient(#000 0 0) content-box,
         linear-gradient(#000 0 0);
       -webkit-mask-composite: xor;
-              mask-composite: exclude;
-      opacity:.8;
+      mask-composite: exclude;
+      pointer-events:none;
+      opacity:.95;
+    }
+    .plan::after{
+      /* brilho interno */
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(420px 160px at 20% 0%, var(--glow, rgba(25,227,154,.16)), transparent 60%);
+      opacity:.85;
       pointer-events:none;
     }
 
-    /* top row */
+    .plan-inner{
+      border-radius: 18px;
+      padding: 16px;
+      border: 1px solid rgba(255,255,255,.06);
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      position:relative;
+      overflow:hidden;
+      height:100%;
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+    }
+
+    /* Shine no hover */
+    .plan-inner .shine{
+      position:absolute;
+      inset:-60px;
+      background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.10) 18%, transparent 38%);
+      transform: translateX(-60%) rotate(0deg);
+      transition: transform .65s ease;
+      pointer-events:none;
+      opacity:.0;
+    }
+    .plan:hover .shine{
+      transform: translateX(60%) rotate(0deg);
+      opacity:.9;
+    }
+    .plan:hover{
+      transform: translateY(-2px);
+      transition: transform .18s ease;
+    }
+
     .plan-top{
       display:flex;
       align-items:flex-start;
@@ -598,160 +556,177 @@
       gap:10px;
     }
     .plan-name{
-      font-weight:1000;
-      letter-spacing:.2px;
+      font-weight: 1000;
+      letter-spacing:-.2px;
+      font-size: 16px;
       text-transform: uppercase;
-      font-size: 14px;
-      color: rgba(255,255,255,.90);
     }
-    .plan-badge{
+    .plan-tag{
       font-size: 11px;
       font-weight: 1000;
-      padding: 6px 10px;
+      padding: 7px 10px;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.22);
       color: rgba(255,255,255,.86);
       white-space:nowrap;
     }
-
     .plan-price{
-      margin-top: 10px;
+      margin-top: 2px;
       font-weight: 1000;
       font-size: 26px;
-      letter-spacing: -0.5px;
+      letter-spacing:-.6px;
     }
-    .plan-desc{
-      margin-top: 6px;
+    .plan-sub{
       color: var(--muted2);
       font-weight: 800;
-      font-size: 12.5px;
-      line-height: 1.35;
+      font-size: 12px;
+      line-height:1.35;
+      margin-top:-2px;
     }
-
-    .plan-points{
-      margin-top: 12px;
+    .plan ul{
+      margin: 6px 0 0;
+      padding: 0;
+      list-style:none;
       display:grid;
       gap: 8px;
     }
-    .pp{
+    .plan li{
       display:flex;
+      gap: 10px;
       align-items:flex-start;
-      gap:10px;
-      color: rgba(255,255,255,.78);
+      color: rgba(238,246,255,.78);
+      font-weight: 700;
       font-size: 12.5px;
-      font-weight: 800;
+      line-height:1.35;
     }
-    .tick{
-      width:18px;height:18px;border-radius:7px;
+    .dotok{
+      width: 18px; height: 18px;
+      border-radius: 8px;
       display:grid; place-items:center;
-      background: rgba(25,227,154,.12);
-      border:1px solid rgba(25,227,154,.20);
+      background: rgba(25,227,154,.14);
+      border: 1px solid rgba(25,227,154,.22);
       color: rgba(25,227,154,1);
       flex: 0 0 auto;
-      margin-top:1px;
-      font-weight:1000;
-    }
-
-    /* CTA button inside card */
-    .plan-cta{
-      margin-top: 14px;
-      width: 100%;
-      padding: 13px 14px;
-      border-radius: 14px;
-      border: 0;
-      cursor: pointer;
+      margin-top: 1px;
+      box-shadow: 0 14px 40px rgba(25,227,154,.10);
       font-weight: 1000;
-      letter-spacing:.2px;
-      transition: transform .18s var(--ease), filter .18s var(--ease);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      position:relative;
-      overflow:hidden;
-    }
-    .plan-cta:hover{transform: translateY(-2px); filter: brightness(1.04)}
-    .plan-cta:active{transform: translateY(0px); filter: brightness(.98)}
-
-    .plan-cta:before{
-      content:"";
-      position:absolute; inset:-2px;
-      background: radial-gradient(circle at 20% 0%, rgba(255,255,255,.45), transparent 45%);
-      opacity:.22;
-      pointer-events:none;
+      font-size: 12px;
     }
 
-    /* themes */
-    .t-free{border-color: rgba(25,227,154,.28)}
-    .t-free .plan-price{color: var(--green)}
-    .t-free .plan-cta{
-      background: linear-gradient(180deg, rgba(25,227,154,1), rgba(11,191,127,1));
-      color:#03100b;
-      box-shadow: 0 22px 60px rgba(25,227,154,.14);
-    }
-    .t-free:after{
-      background: linear-gradient(135deg, rgba(25,227,154,.55), rgba(25,227,154,0));
-    }
-    .t-free .plan-badge{
-      border-color: rgba(25,227,154,.28);
-      background: rgba(25,227,154,.10);
-      color: rgba(25,227,154,1);
+    .plan-cta{
+      margin-top:auto;
+      padding-top: 8px;
+      display:grid;
+      gap: 10px;
     }
 
-    .t-bronze:after{background: linear-gradient(135deg, rgba(255,138,31,.55), rgba(255,138,31,0));}
-    .t-bronze .plan-cta{background: linear-gradient(180deg, rgba(255,138,31,1), rgba(255,120,10,1)); color:#140700;}
-    .t-bronze .tick{background: rgba(255,138,31,.12); border-color: rgba(255,138,31,.20); color: rgba(255,190,130,1);}
-    .t-bronze .plan-badge{border-color: rgba(255,138,31,.25); background: rgba(255,138,31,.10); color: rgba(255,190,130,1);}
-
-    .t-prata:after{background: linear-gradient(135deg, rgba(255,255,255,.40), rgba(255,255,255,0));}
-    .t-prata .plan-cta{background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.82)); color:#000;}
-    .t-prata .tick{background: rgba(255,255,255,.10); border-color: rgba(255,255,255,.18); color: rgba(255,255,255,.92);}
-
-    .t-gold:after{background: linear-gradient(135deg, rgba(255,210,26,.55), rgba(255,210,26,0));}
-    .t-gold .plan-cta{background: linear-gradient(180deg, rgba(255,210,26,1), rgba(255,185,0,1)); color:#120c00;}
-    .t-gold .tick{background: rgba(255,210,26,.12); border-color: rgba(255,210,26,.20); color: rgba(255,230,150,1);}
-    .t-gold .plan-badge{border-color: rgba(255,210,26,.28); background: rgba(255,210,26,.10); color: rgba(255,230,150,1);}
-
-    .t-black:after{background: linear-gradient(135deg, rgba(168,85,247,.55), rgba(168,85,247,0));}
-    .t-black .plan-cta{background: linear-gradient(180deg, rgba(168,85,247,1), rgba(132,56,245,1)); color:#0c0014;}
-    .t-black .tick{background: rgba(168,85,247,.12); border-color: rgba(168,85,247,.20); color: rgba(205,165,255,1);}
-    .t-black .plan-badge{border-color: rgba(168,85,247,.28); background: rgba(168,85,247,.10); color: rgba(205,165,255,1);}
-
-    /* highlight best */
-    .best{
-      transform: translateY(-2px);
-      border-color: rgba(255,210,26,.25);
-      box-shadow: 0 28px 110px rgba(255,210,26,.07), var(--shadow2);
-    }
-    .best .plan-badge{
-      border-color: rgba(255,210,26,.30);
-      background: rgba(255,210,26,.12);
-    }
-
-    /* Price bar */
-    .price-bar{
-      margin: 16px auto 0;
-      width:min(1040px, 96vw);
+    .btn-plan{
+      width: 100%;
+      border:0;
+      cursor:pointer;
       padding: 12px 14px;
       border-radius: 14px;
-      border: 2px solid rgba(255,58,58,.28);
-      background: linear-gradient(90deg, rgba(255,58,58,.12), rgba(0,0,0,.15));
+      font-weight: 1000;
+      letter-spacing:.2px;
+      transition: .18s transform, .18s filter, .18s box-shadow;
+      box-shadow: 0 16px 44px rgba(0,0,0,.28);
+    }
+    .btn-plan:hover{ transform: translateY(-1px); filter: brightness(1.06); }
+    .btn-plan:active{ transform: translateY(0px) scale(.99); }
+
+    /* Temas de planos */
+    .plan.free{
+      --border: linear-gradient(90deg, rgba(25,227,154,.65), rgba(25,227,154,.12));
+      --glow: rgba(25,227,154,.22);
+    }
+    .plan.free .plan-price{ color: var(--green); }
+    .plan.free .btn-plan{
+      background: linear-gradient(180deg, rgba(25,227,154,1), rgba(11,191,127,1));
+      color:#03100b;
+      box-shadow: 0 18px 50px rgba(25,227,154,.18);
+    }
+    .plan.free .plan-tag{
+      border-color: rgba(255,58,58,.35);
+      background: rgba(255,58,58,.10);
+      color: rgba(255,170,170,1);
+    }
+
+    .plan.bronze{
+      --border: linear-gradient(90deg, rgba(255,138,31,.65), rgba(255,138,31,.12));
+      --glow: rgba(255,138,31,.18);
+    }
+    .plan.bronze .btn-plan{
+      background: linear-gradient(180deg, rgba(255,138,31,1), rgba(235,110,10,1));
+      color:#140700;
+    }
+
+    .plan.prata{
+      --border: linear-gradient(90deg, rgba(255,255,255,.45), rgba(255,255,255,.10));
+      --glow: rgba(255,255,255,.12);
+    }
+    .plan.prata .btn-plan{
+      background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(225,232,242,.92));
+      color:#000;
+    }
+
+    .plan.gold{
+      --border: linear-gradient(90deg, rgba(255,210,26,.70), rgba(255,210,26,.14));
+      --glow: rgba(255,210,26,.18);
+    }
+    .plan.gold .btn-plan{
+      background: linear-gradient(180deg, rgba(255,210,26,1), rgba(245,178,0,1));
+      color:#120c00;
+    }
+
+    .plan.black{
+      --border: linear-gradient(90deg, rgba(168,85,247,.70), rgba(168,85,247,.14));
+      --glow: rgba(168,85,247,.18);
+    }
+    .plan.black .btn-plan{
+      background: linear-gradient(180deg, rgba(168,85,247,1), rgba(124,58,237,1));
+      color:#0c0014;
+    }
+
+    /* destaque do melhor plano */
+    .plan.is-featured{
+      transform: scale(1.02);
+    }
+    .plan.is-featured .plan-inner{
+      background: linear-gradient(180deg, rgba(25,227,154,.07), rgba(255,255,255,.02));
+      border-color: rgba(25,227,154,.14);
+    }
+
+    .price-bar{
+      margin: 16px auto 0;
+      width:min(980px, 96vw);
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 2px solid rgba(255,58,58,.26);
+      background: linear-gradient(90deg, rgba(255,58,58,.12), rgba(0,0,0,.10));
       font-weight: 1000;
       color: rgba(255,255,255,.92);
-      text-align:left;
+      box-shadow: 0 18px 55px rgba(0,0,0,.28);
     }
     .price-bar small{
       display:block;
       margin-top:4px;
-      color: rgba(255,255,255,.65);
+      color: rgba(255,255,255,.62);
       font-weight:800;
     }
 
-    /* Disclaimer */
+    .final-cta{
+      margin: 16px auto 0;
+      width:min(980px, 96vw);
+      display:flex;
+      justify-content:center;
+      gap: 12px;
+      flex-wrap:wrap;
+    }
+
     .disclaimer{
-      margin: 18px auto 60px;
-      width:min(1040px, 96vw);
+      margin: 18px auto 70px;
+      width:min(980px, 96vw);
       padding: 14px 16px;
       border-radius: 14px;
       background: rgba(255,255,255,.03);
@@ -760,82 +735,30 @@
       font-weight: 800;
       font-size: 12px;
       text-align:center;
-    }
-
-    /* =========================================================
-       FLOATING CTA (MOBILE)
-    ========================================================== */
-    .floating{
-      position:fixed;
-      left:0; right:0; bottom:0;
-      z-index:50;
-      padding: 10px 0;
-      background: rgba(0,0,0,.55);
-      backdrop-filter: blur(14px);
-      border-top: 1px solid rgba(255,255,255,.10);
-    }
-    .floating .inner{
-      width:min(1120px, 92vw);
-      margin: 0 auto;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      flex-wrap:wrap;
-    }
-    .floating .msg{
-      color: rgba(255,255,255,.78);
-      font-weight: 800;
-      font-size: 13px;
-    }
-    .floating .cta{
-      margin:0;
-    }
-
-    /* avoid content behind floating bar */
-    .pad-bottom{padding-bottom: 78px;}
-    @media (max-width:520px){ .pad-bottom{padding-bottom: 96px;} }
-
-    /* =========================================================
-       ANIMATIONS (SUBTLE)
-    ========================================================== */
-    @keyframes floaty {
-      0%{transform: translateY(0px)}
-      50%{transform: translateY(-4px)}
-      100%{transform: translateY(0px)}
-    }
-    .live-pill{animation: floaty 3.2s var(--ease) infinite}
-    @media (prefers-reduced-motion: reduce){
-      .live-pill{animation:none}
-      *{transition:none !important}
+      box-shadow: 0 18px 55px rgba(0,0,0,.25);
     }
   </style>
 </head>
 
-<body class="pad-bottom">
+<body>
   <div class="grid-bg"></div>
   <div class="vignette"></div>
 
-  <!-- TOP TIMER -->
-  <div class="topbar">
-    <div class="container">
-      <div class="pill-timer">
-        <span class="dot"></span>
-        <span id="topCountdown">14:04 para o preço subir</span>
-      </div>
+  <div class="container">
+    <div class="top-pill">
+      <span class="dot"></span>
+      <span id="topCountdown">14:04 para o preço subir</span>
     </div>
   </div>
 
-  <!-- HERO -->
   <header class="hero">
     <div class="container">
       <div class="logo-wrap">
         <div class="logo-box">
-          <!-- coloque assets/logo.png -->
-          <img src="assets/logo.png" alt="TRX PRO" onerror="this.style.opacity=.45; this.alt='Coloque assets/logo.png';">
+          <img src="assets/logo.png" alt="TRX PRO" onerror="this.style.opacity=.4; this.alt='Coloque assets/logo.png';">
         </div>
 
-        <div class="live-pill" title="Atualização automática">
+        <div class="live-pill">
           <span class="live-dot"></span>
           <span id="liveRobots">375 ROBÔS OPERANDO AGORA</span>
         </div>
@@ -850,22 +773,18 @@
 
       <div class="sub">
         Robô <b>100% AUTOMÁTICO</b> opera no Mini Índice<br/>
-        enquanto você dorme <span aria-hidden="true">💤</span>
+        enquanto você dorme 💠
       </div>
 
       <div class="cta">
-        <button class="btn btn-primary" onclick="document.querySelector('#planos').scrollIntoView({behavior:'smooth'})">
+        <button class="btn green" onclick="document.querySelector('#planos').scrollIntoView({behavior:'smooth'})">
           🚀 ATIVAR ROBÔ AGORA
-        </button>
-        <button class="btn btn-ghost hide-mobile" onclick="document.querySelector('#bonus').scrollIntoView({behavior:'smooth'})">
-          ✨ Ver bônus
         </button>
       </div>
 
       <div class="chart">
         <div class="chart-head">📊 CURVA DE CAPITAL 2025 - RESULTADOS REAIS</div>
-        <!-- coloque assets/curva.png -->
-        <img src="assets/curva.png" alt="Curva de capital" onerror="this.style.opacity=.45; this.alt='Coloque assets/curva.png';">
+        <img src="assets/curva.png" alt="Curva de capital" onerror="this.style.opacity=.4; this.alt='Coloque assets/curva.png';">
         <div class="metrics">
           <div class="metric">
             <div class="v green">R$ 75.38k</div>
@@ -883,181 +802,200 @@
       </div>
 
       <div class="row4">
-        <div class="feat"><strong>⚡ Execução em milissegundos</strong><span>Entradas e saídas rápidas</span></div>
+        <div class="feat"><strong>⚡ Execução em milissegundos</strong><span>Entrada e saída rápidas</span></div>
         <div class="feat"><strong>🛡️ Gestão de risco automática</strong><span>Stops e controle</span></div>
         <div class="feat"><strong>🕒 Opera 24/5 sem parar</strong><span>Rotina automática</span></div>
         <div class="feat"><strong>📈 71% de taxa de acerto</strong><span>Base em resultados</span></div>
       </div>
 
       <div class="mid-cta">
-        <button class="btn-white" onclick="document.querySelector('#planos').scrollIntoView({behavior:'smooth'})">
-          VER PLANOS AGORA →
-        </button>
+        <a class="btn white" href="#planos">VER PLANOS AGORA →</a>
       </div>
     </div>
   </header>
 
-  <!-- BONUS -->
-  <section class="section" id="bonus">
+  <section class="bonus">
     <div class="container">
       <div class="pill">✨ BÔNUS EXCLUSIVO</div>
       <h2 class="title">
-        Ganhe <span class="accent">GRÁTIS</span><br/> o Módulo de Automação
+        Ganhe <span class="accent-orange">GRÁTIS</span><br> o Módulo de Automação
       </h2>
       <div class="subtitle">
         Abra sua conta na nossa corretora parceira e receba benefícios exclusivos
       </div>
 
       <div class="bonus-grid">
-        <div class="poster card">
+        <div class="panel elliot">
           <div class="box">
-            <!-- coloque assets/elliot.png -->
-            <img src="assets/elliot.png" alt="Elliot" onerror="this.style.opacity=.45; this.alt='Coloque assets/elliot.png';">
+            <img src="assets/elliot.png" alt="Elliot" onerror="this.style.opacity=.4; this.alt='Coloque assets/elliot.png';">
           </div>
         </div>
 
-        <div class="bonus-list">
-          <div class="bitem">
-            <div class="bicon">✓</div>
-            <div>
-              <h4>Módulo de Automação GRÁTIS</h4>
-              <p>Configure e ative o TRX PRO sem custo adicional ao abrir sua conta</p>
+        <div class="panel">
+          <div class="bonus-list">
+            <div class="bitem">
+              <div class="bicon">✓</div>
+              <div class="btext">
+                <h4>Módulo de Automação GRÁTIS</h4>
+                <p>Configure e ative o TRX PRO sem custo adicional ao abrir sua conta</p>
+              </div>
             </div>
-          </div>
 
-          <div class="bitem">
-            <div class="bicon" style="background: rgba(74,163,255,.12); border-color: rgba(74,163,255,.22); color: rgba(74,163,255,1)">✓</div>
-            <div>
-              <h4>Suporte Humanizado</h4>
-              <p>Atendimento personalizado quando você precisar, sem robôs ou espera</p>
+            <div class="bitem">
+              <div class="bicon" style="background: rgba(74,163,255,.12); border-color: rgba(74,163,255,.22); color: rgba(74,163,255,1);">✓</div>
+              <div class="btext">
+                <h4>Suporte Humanizado</h4>
+                <p>Atendimento personalizado quando você precisar, sem robôs ou espera</p>
+              </div>
             </div>
-          </div>
 
-          <div class="bitem">
-            <div class="bicon" style="background: rgba(168,85,247,.12); border-color: rgba(168,85,247,.22); color: rgba(168,85,247,1)">✓</div>
-            <div>
-              <h4>Assessor de Investimentos</h4>
-              <p>Acesso direto a profissionais para orientar suas estratégias</p>
+            <div class="bitem">
+              <div class="bicon" style="background: rgba(168,85,247,.12); border-color: rgba(168,85,247,.22); color: rgba(168,85,247,1);">✓</div>
+              <div class="btext">
+                <h4>Assessor de Investimentos</h4>
+                <p>Acesso direto a profissionais para orientar suas estratégias</p>
+              </div>
             </div>
-          </div>
 
-          <div class="bitem">
-            <div class="bicon" style="background: rgba(255,138,31,.12); border-color: rgba(255,138,31,.22); color: rgba(255,190,130,1)">✓</div>
-            <div>
-              <h4>Profit Pro GRÁTIS</h4>
-              <p>Plataforma profissional de análise e execução sem mensalidade</p>
+            <div class="bitem">
+              <div class="bicon" style="background: rgba(255,138,31,.12); border-color: rgba(255,138,31,.22); color: rgba(255,170,100,1);">✓</div>
+              <div class="btext">
+                <h4>Profit Pro GRÁTIS</h4>
+                <p>Plataforma profissional de análise e execução sem mensalidade</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
       <div class="important">
-        <b>Importante:</b> Não é obrigatório usar nossa corretora parceira. Você pode operar o TRX PRO em qualquer corretora.
+        <b>Importante:</b> Não é obrigatório usar nossa corretora parceira. Você pode operar o TRX PRO em qualquer corretora de sua preferência.
         Os benefícios acima são exclusivos para quem optar pela parceria.
       </div>
     </div>
   </section>
 
-  <!-- PLANS -->
   <section class="plans" id="planos">
     <div class="container">
-      <div class="pill-red">🔥 ÚLTIMAS VAGAS HOJE</div>
-      <h2 class="plans-title">Escolha Seu <span class="green">PODER DE FOGO</span></h2>
+      <div class="pill">🔥 ÚLTIMAS VAGAS HOJE</div>
 
-      <div class="plan-grid">
-        <!-- GRÁTIS -->
-        <div class="plan t-free">
-          <div class="plan-top">
-            <div class="plan-name">GRÁTIS</div>
-            <div class="plan-badge">+ recomendado p/ começar</div>
-          </div>
+      <h2 class="title">
+        Escolha Seu <span class="accent-green">PODER DE FOGO</span>
+      </h2>
 
-          <div class="plan-price">GRÁTIS</div>
-          <div class="plan-desc">Acesso inicial / bônus para começar do jeito certo.</div>
+      <div class="plans-wrap">
+        <div class="plan-grid">
 
-          <div class="plan-points">
-            <div class="pp"><span class="tick">✓</span>Ativação rápida</div>
-            <div class="pp"><span class="tick">✓</span>Conteúdo inicial</div>
-            <div class="pp"><span class="tick">✓</span>Suporte básico</div>
-          </div>
+          <article class="plan free is-featured">
+            <div class="plan-inner">
+              <div class="shine"></div>
+              <div class="plan-top">
+                <div class="plan-name">GRÁTIS</div>
+                <div class="plan-tag">+ recomendado p/ começar</div>
+              </div>
+              <div class="plan-price">GRÁTIS</div>
+              <div class="plan-sub">Acesso inicial / bônus</div>
 
-          <button class="plan-cta" onclick="goCheckout('gratis')">⚡ ATIVAR</button>
-        </div>
+              <ul>
+                <li><span class="dotok">✓</span> Acesso inicial</li>
+                <li><span class="dotok">✓</span> Conteúdo de introdução</li>
+                <li><span class="dotok">✓</span> Passo a passo básico</li>
+              </ul>
 
-        <!-- BRONZE -->
-        <div class="plan t-bronze">
-          <div class="plan-top">
-            <div class="plan-name">BRONZE</div>
-            <div class="plan-badge">Plano básico</div>
-          </div>
+              <div class="plan-cta">
+                <button class="btn-plan" onclick="goCheckout('gratis')">ATIVAR</button>
+              </div>
+            </div>
+          </article>
 
-          <div class="plan-price">R$ 197</div>
-          <div class="plan-desc">Ideal para quem quer automatizar com custo baixo.</div>
+          <article class="plan bronze">
+            <div class="plan-inner">
+              <div class="shine"></div>
+              <div class="plan-top">
+                <div class="plan-name">BRONZE</div>
+                <div class="plan-tag">Plano básico</div>
+              </div>
+              <div class="plan-price">R$ 197</div>
+              <div class="plan-sub">Para começar com suporte</div>
 
-          <div class="plan-points">
-            <div class="pp"><span class="tick">✓</span>Robô + configurações</div>
-            <div class="pp"><span class="tick">✓</span>Atualizações (quando houver)</div>
-            <div class="pp"><span class="tick">✓</span>Suporte padrão</div>
-          </div>
+              <ul>
+                <li><span class="dotok">✓</span> Robô + configurações</li>
+                <li><span class="dotok">✓</span> Suporte padrão</li>
+                <li><span class="dotok">✓</span> Atualizações básicas</li>
+              </ul>
 
-          <button class="plan-cta" onclick="goCheckout('bronze')">🥉 BRONZE</button>
-        </div>
+              <div class="plan-cta">
+                <button class="btn-plan" onclick="goCheckout('bronze')">BRONZE</button>
+              </div>
+            </div>
+          </article>
 
-        <!-- PRATA -->
-        <div class="plan t-prata">
-          <div class="plan-top">
-            <div class="plan-name">PRATA</div>
-            <div class="plan-badge">Mais recursos</div>
-          </div>
+          <article class="plan prata">
+            <div class="plan-inner">
+              <div class="shine"></div>
+              <div class="plan-top">
+                <div class="plan-name">PRATA</div>
+                <div class="plan-tag">Mais recursos</div>
+              </div>
+              <div class="plan-price">R$ 247</div>
+              <div class="plan-sub">Mais ajustes e vantagens</div>
 
-          <div class="plan-price">R$ 247</div>
-          <div class="plan-desc">Equilíbrio para quem quer mais controle e segurança.</div>
+              <ul>
+                <li><span class="dotok">✓</span> Recursos extras</li>
+                <li><span class="dotok">✓</span> Suporte mais rápido</li>
+                <li><span class="dotok">✓</span> Guias e templates</li>
+              </ul>
 
-          <div class="plan-points">
-            <div class="pp"><span class="tick">✓</span>Configurações extras</div>
-            <div class="pp"><span class="tick">✓</span>Materiais de apoio</div>
-            <div class="pp"><span class="tick">✓</span>Suporte melhorado</div>
-          </div>
+              <div class="plan-cta">
+                <button class="btn-plan" onclick="goCheckout('prata')">PRATA</button>
+              </div>
+            </div>
+          </article>
 
-          <button class="plan-cta" onclick="goCheckout('prata')">🥈 PRATA</button>
-        </div>
+          <article class="plan gold">
+            <div class="plan-inner">
+              <div class="shine"></div>
+              <div class="plan-top">
+                <div class="plan-name">GOLD</div>
+                <div class="plan-tag">Melhor custo-benefício</div>
+              </div>
+              <div class="plan-price">R$ 497</div>
+              <div class="plan-sub">Para quem quer o pacote completo</div>
 
-        <!-- GOLD (BEST) -->
-        <div class="plan t-gold best">
-          <div class="plan-top">
-            <div class="plan-name">GOLD</div>
-            <div class="plan-badge">Melhor custo-benefício</div>
-          </div>
+              <ul>
+                <li><span class="dotok">✓</span> Tudo do Prata</li>
+                <li><span class="dotok">✓</span> Acesso a bônus</li>
+                <li><span class="dotok">✓</span> Suporte prioritário</li>
+              </ul>
 
-          <div class="plan-price">R$ 497</div>
-          <div class="plan-desc">Plano recomendado: mais recursos + prioridade.</div>
+              <div class="plan-cta">
+                <button class="btn-plan" onclick="goCheckout('gold')">GOLD</button>
+              </div>
+            </div>
+          </article>
 
-          <div class="plan-points">
-            <div class="pp"><span class="tick">✓</span>Tudo do Prata</div>
-            <div class="pp"><span class="tick">✓</span>Prioridade no suporte</div>
-            <div class="pp"><span class="tick">✓</span>Onboarding / ajuda inicial</div>
-          </div>
+          <article class="plan black">
+            <div class="plan-inner">
+              <div class="shine"></div>
+              <div class="plan-top">
+                <div class="plan-name">BLACK</div>
+                <div class="plan-tag">VIP / suporte premium</div>
+              </div>
+              <div class="plan-price">R$ 697</div>
+              <div class="plan-sub">Atendimento e vantagens VIP</div>
 
-          <button class="plan-cta" onclick="goCheckout('gold')">🥇 GOLD</button>
-        </div>
+              <ul>
+                <li><span class="dotok">✓</span> Tudo do Gold</li>
+                <li><span class="dotok">✓</span> Suporte VIP</li>
+                <li><span class="dotok">✓</span> Onboarding/ajuda</li>
+              </ul>
 
-        <!-- BLACK -->
-        <div class="plan t-black">
-          <div class="plan-top">
-            <div class="plan-name">BLACK</div>
-            <div class="plan-badge">VIP / suporte premium</div>
-          </div>
+              <div class="plan-cta">
+                <button class="btn-plan" onclick="goCheckout('black')">BLACK</button>
+              </div>
+            </div>
+          </article>
 
-          <div class="plan-price">R$ 697</div>
-          <div class="plan-desc">Máximo suporte e atendimento preferencial.</div>
-
-          <div class="plan-points">
-            <div class="pp"><span class="tick">✓</span>Tudo do Gold</div>
-            <div class="pp"><span class="tick">✓</span>Suporte VIP</div>
-            <div class="pp"><span class="tick">✓</span>Acompanhamento inicial</div>
-          </div>
-
-          <button class="plan-cta" onclick="goCheckout('black')">🟣 BLACK</button>
         </div>
       </div>
 
@@ -1066,24 +1004,17 @@
         <small>Não deixe para depois. Outro(a) já está lendo isso AGORA.</small>
       </div>
 
+      <div class="final-cta">
+        <button class="btn green" onclick="goCheckout('gold')">✅ GARANTIR VAGA AGORA</button>
+        <a class="btn white" href="#topo" onclick="window.scrollTo({top:0,behavior:'smooth'})">Voltar ao topo</a>
+      </div>
+
       <div class="disclaimer">
         ⚠️ AVISO IMPORTANTE: Trading envolve riscos. Resultados passados não garantem resultados futuros.
-        Esta página não oferece aconselhamento financeiro. Use com responsabilidade.
+        Esta página não oferece aconselhamento financeiro.
       </div>
     </div>
   </section>
-
-  <!-- FLOATING CTA -->
-  <div class="floating">
-    <div class="inner">
-      <div class="msg">🔥 Oferta ativa • <b style="color:#fff">Entrega imediata</b> • Suporte incluso</div>
-      <div class="cta">
-        <button class="btn btn-primary" onclick="document.querySelector('#planos').scrollIntoView({behavior:'smooth'})">
-          ✅ GARANTIR AGORA
-        </button>
-      </div>
-    </div>
-  </div>
 
   <script>
     // ====== CONFIGURE SEUS LINKS AQUI ======
@@ -1101,7 +1032,7 @@
       window.location.href = url;
     }
 
-    // Contagem regressiva (Preço sobe)
+    // Contagem regressiva
     let seconds = 14 * 60 + 4; // 14:04
     const topEl = document.getElementById("topCountdown");
     const barEl = document.getElementById("priceCountdown");
@@ -1119,11 +1050,11 @@
       barEl.textContent = `${f.m}min ${String(f.ss).padStart(2,'0')}s`;
     }, 1000);
 
-    // "Robôs operando agora" (efeito leve)
+    // "Robôs operando agora"
     const liveEl = document.getElementById("liveRobots");
     let base = 375;
     setInterval(() => {
-      const delta = Math.floor(Math.random() * 3) - 1; // -1,0,1
+      const delta = Math.floor(Math.random() * 3) - 1;
       base = Math.max(320, Math.min(520, base + delta));
       liveEl.textContent = `${base} ROBÔS OPERANDO AGORA`;
     }, 2500);
